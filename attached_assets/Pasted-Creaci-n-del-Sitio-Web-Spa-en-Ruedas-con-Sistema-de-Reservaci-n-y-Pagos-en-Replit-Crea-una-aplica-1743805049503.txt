@@ -1,0 +1,92 @@
+Creación del Sitio Web "Spa en Ruedas" con Sistema de Reservación y Pagos en Replit
+
+Crea una aplicación web moderna, responsive y visualmente atractiva utilizando Flask (Python) con React (Frontend) y PostgreSQL (Base de datos), enfocada en representar a la empresa Spa en Ruedas, especializada en servicios móviles de spa en vagones en distintas localidades de Puerto Rico, dirigidos principalmente al turismo y eventos locales.
+
+La aplicación deberá incluir lo siguiente:
+
+Frontend:
+1. Página Principal:
+Diseño visual elegante y relajante que refleje bienestar y turismo.
+
+Banner principal explicando claramente el concepto, acompañado de imágenes impactantes.
+
+Sección breve sobre próximos eventos, lugares que visitará Spa en Ruedas, y acceso directo a reservas.
+
+2. Página de Servicios:
+Descripciones detalladas y precios de:
+
+Masaje terapéutico y relajante
+
+Masaje profundo (Deep Tissue)
+
+Masaje deportivo
+
+Ventosaterapia (Cupping)
+
+Reflexología
+
+Tratamientos faciales y corporales
+
+Aromaterapia
+
+Cada servicio mostrará imagen ilustrativa, duración, beneficios clave y botón de reserva inmediata.
+
+3. Sistema de Reservación:
+Formulario intuitivo con campos:
+
+Nombre completo
+
+Número de teléfono
+
+Correo electrónico
+
+Fecha y hora deseadas (selección calendario/hora)
+
+Selección del servicio deseado
+
+Selección del vagón y ubicación disponible
+
+Comentarios adicionales
+
+Confirmación automática vía email al cliente y al administrador con detalles de la reservación.
+
+4. Sistema de Pago Integrado (Stripe/PayPal):
+Implementación segura de Stripe o PayPal para procesar pagos en línea al momento de la reserva.
+
+Página de pago sencilla, segura y amigable para el usuario.
+
+Confirmación de pago vía email automático, con recibo adjunto.
+
+5. Calendario de Eventos y Ubicaciones:
+Calendario interactivo mostrando futuras ubicaciones y eventos programados.
+
+Información sobre la llegada de cruceros, ferias locales, fiestas patronales, eventos de salud, etc.
+
+6. Sobre Nosotros:
+Información sobre visión, misión y valores.
+
+Beneficios del proyecto (impacto económico, social, turístico).
+
+7. Página de Contacto:
+Formulario rápido de contacto.
+
+Información de contacto (teléfono, correo electrónico, redes sociales).
+
+Backend/API:
+Base de datos PostgreSQL para almacenar información de usuarios, reservas, servicios y transacciones.
+
+API REST en Flask para manejar:
+
+Gestión de reservas (crear, modificar, cancelar).
+
+Integración segura con la API de pagos (Stripe o PayPal).
+
+Envío automático de emails de confirmación (usando SendGrid o SMTP).
+
+Consideraciones técnicas adicionales:
+Código modular y bien documentado para fácil escalabilidad y mantenimiento.
+
+Seguridad robusta en transacciones, protección contra fraudes, validaciones básicas.
+
+Uso de variables de entorno para credenciales y API keys.
+
