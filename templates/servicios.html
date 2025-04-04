@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+
+{% block title %}Servicios - Spa en Ruedas{% endblock %}
+
+{% block content %}
+<!-- Services Hero -->
+<section class="page-header bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold">Nuestros Servicios</h1>
+                <p class="lead">Descubre todos los tratamientos y terapias que ofrecemos para tu bienestar</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Categories -->
+<section class="services-categories py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12 mb-4">
+                <div class="categories-nav">
+                    <button class="btn btn-outline-primary active" data-filter="all">Todos</button>
+                    <button class="btn btn-outline-primary" data-filter="masajes">Masajes</button>
+                    <button class="btn btn-outline-primary" data-filter="faciales">Faciales</button>
+                    <button class="btn btn-outline-primary" data-filter="terapias">Terapias Alternativas</button>
+                    <button class="btn btn-outline-primary" data-filter="paquetes">Paquetes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services List -->
+<section class="services-list py-4">
+    <div class="container">
+        <div class="row">
+            {% for servicio in servicios %}
+            <div class="col-lg-4 col-md-6 mb-4 service-item" data-category="{{ servicio.categoria|lower }}">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="{{ url_for('static', filename='img/services/' + servicio.imagen) if servicio.imagen else url_for('static', filename='img/service-default.jpg') }}" alt="{{ servicio.nombre }}" class="img-fluid">
+                    </div>
+                    <div class="service-content">
+                        <h3>{{ servicio.nombre }}</h3>
+                        <p class="service-price">${{ "%.2f"|format(servicio.precio) }}</p>
+                        <p class="service-duration"><i class="far fa-clock me-2"></i>{{ servicio.duracion }} minutos</p>
+                        <p class="service-description">{{ servicio.descripcion|truncate(100) }}</p>
+                        <div class="service-actions">
+                            <a href="{{ url_for('detalle_servicio', service_id=servicio.id) }}" class="btn btn-outline-primary">Ver Detalles</a>
+                            <a href="{{ url_for('reservar') }}?service={{ servicio.id }}" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Service Benefits -->
+<section class="service-benefits py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="h1 fw-bold">Beneficios de Nuestros Servicios</h2>
+            <p class="lead">Por qué elegir Spa en Ruedas para tu bienestar</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="benefit-card text-center">
+                    <div class="benefit-icon mb-3">
+                        <i class="fas fa-map-marker-alt fa-3x text-primary"></i>
+                    </div>
+                    <h3>Conveniencia</h3>
+                    <p>Ofrecemos nuestros servicios en múltiples ubicaciones para estar más cerca de ti. No necesitas desplazarte largas distancias.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="benefit-card text-center">
+                    <div class="benefit-icon mb-3">
+                        <i class="fas fa-user-md fa-3x text-primary"></i>
+                    </div>
+                    <h3>Profesionales Certificados</h3>
+                    <p>Todos nuestros terapistas son profesionales certificados con años de experiencia en sus respectivas especialidades.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="benefit-card text-center">
+                    <div class="benefit-icon mb-3">
+                        <i class="fas fa-leaf fa-3x text-primary"></i>
+                    </div>
+                    <h3>Productos Naturales</h3>
+                    <p>Utilizamos productos de alta calidad con ingredientes naturales para todos nuestros tratamientos.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="benefit-card text-center">
+                    <div class="benefit-icon mb-3">
+                        <i class="fas fa-calendar-alt fa-3x text-primary"></i>
+                    </div>
+                    <h3>Reservas Flexibles</h3>
+                    <p>Sistema de reservas en línea fácil de usar con opciones flexibles de fechas, horarios y ubicaciones.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="benefit-card text-center">
+                    <div class="benefit-icon mb-3">
+                        <i class="fas fa-gift fa-3x text-primary"></i>
+                    </div>
+                    <h3>Paquetes Personalizados</h3>
+                    <p>Ofrecemos paquetes personalizados para parejas, grupos y eventos especiales según tus necesidades.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="benefit-card text-center">
+                    <div class="benefit-icon mb-3">
+                        <i class="fas fa-dollar-sign fa-3x text-primary"></i>
+                    </div>
+                    <h3>Precios Competitivos</h3>
+                    <p>Mantenemos precios competitivos sin comprometer la calidad del servicio que ofrecemos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="h1 fw-bold">Preguntas Frecuentes</h2>
+            <p class="lead">Respuestas a las dudas más comunes sobre nuestros servicios</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                                ¿Cómo funciona la reservación?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Puedes reservar directamente desde nuestra página web seleccionando el servicio que deseas, la fecha, hora y ubicación que prefieras. Una vez confirmada la reserva, recibirás un correo electrónico con los detalles.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                ¿Puedo cancelar o reprogramar mi cita?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Sí, puedes cancelar o reprogramar tu cita hasta 24 horas antes de la hora programada sin cargo adicional. Las cancelaciones con menos de 24 horas de anticipación pueden estar sujetas a un cargo.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                ¿Qué formas de pago aceptan?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Aceptamos tarjetas de crédito/débito, PayPal y efectivo en el momento del servicio. Para reservar, se requiere un depósito que puede pagarse en línea.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                                ¿Qué debo llevar o tener en cuenta para mi cita?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Te recomendamos llegar 10 minutos antes de tu cita, usar ropa cómoda y evitar comidas pesadas justo antes del servicio. Si tienes alguna condición médica, infórmanos al momento de la reserva.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                ¿Ofrecen servicios a domicilio?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Actualmente, nuestros servicios se ofrecen en ubicaciones fijas programadas en diferentes áreas. No ofrecemos servicios a domicilio individual, pero sí podemos coordinar servicios para grupos o eventos especiales.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5 bg-light">
+    <div class="container">
+        <div class="cta-content text-center">
+            <h2 class="h1 fw-bold mb-4">¿Listo para disfrutar de nuestros servicios?</h2>
+            <p class="lead mb-4">Haz tu reservación ahora y experimenta el mejor spa móvil de Puerto Rico.</p>
+            <a href="{{ url_for('reservar') }}" class="btn btn-primary btn-lg">Reservar Ahora</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Category filter functionality
+        const filterButtons = document.querySelectorAll('.categories-nav button');
+        const serviceItems = document.querySelectorAll('.service-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get filter value
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Show/hide service items based on filter
+                serviceItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% block title %}Reservar - Spa en Ruedas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock %}
+
+{% block content %}
+<!-- Booking Header -->
+<section class="page-header bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold">Reservar Cita</h1>
+                <p class="lead">Programa tu sesión de spa en la fecha y ubicación que prefieras</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Form -->
+<section class="booking-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="booking-form">
+                    <form id="bookingForm" method="POST" action="{{ url_for('reservar') }}">
+                        <h3 class="mb-4">Información de Reserva</h3>
+                        
+                        <!-- Servicio -->
+                        <div class="mb-4">
+                            <label for="booking-service" class="form-label">Selecciona un Servicio</label>
+                            <select id="booking-service" name="servicio_id" class="form-select" required>
+                                <option value="">Selecciona un servicio</option>
+                                {% for servicio in servicios %}
+                                <option value="{{ servicio.id }}" data-price="{{ servicio.precio }}" data-duration="{{ servicio.duracion }}">
+                                    {{ servicio.nombre }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <div class="mt-2">
+                                <span class="text-primary fw-bold" id="service-price">$0.00</span> |
+                                <span id="service-duration">0 minutos</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Fecha y Ubicación -->
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <label for="booking-date" class="form-label">Fecha</label>
+                                <input type="text" id="booking-date" name="fecha" class="form-control" placeholder="Selecciona una fecha" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="booking-location" class="form-label">Ubicación</label>
+                                <select id="booking-location" name="ubicacion_id" class="form-select" required>
+                                    <option value="">Selecciona una ubicación</option>
+                                    {% for ubicacion in ubicaciones %}
+                                    <option value="{{ ubicacion.id }}">{{ ubicacion.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Hora -->
+                        <div class="mb-4">
+                            <label for="booking-time" class="form-label">Hora</label>
+                            <select id="booking-time" name="hora" class="form-select" required disabled>
+                                <option value="">Selecciona fecha y ubicación primero</option>
+                            </select>
+                            <small class="text-muted">Selecciona primero la fecha y ubicación para ver horarios disponibles.</small>
+                        </div>
+                        
+                        <h3 class="mb-4 mt-5">Información Personal</h3>
+                        
+                        <!-- Información del Cliente -->
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <label for="client-name" class="form-label">Nombre Completo</label>
+                                <input type="text" id="client-name" name="nombre" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="client-email" class="form-label">Correo Electrónico</label>
+                                <input type="email" id="client-email" name="email" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="client-phone" class="form-label">Teléfono</label>
+                                <input type="tel" id="client-phone" name="telefono" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Comentarios -->
+                        <div class="mb-4">
+                            <label for="booking-comments" class="form-label">Comentarios adicionales</label>
+                            <textarea id="booking-comments" name="comentarios" class="form-control" rows="3"></textarea>
+                        </div>
+                        
+                        <!-- Términos y Condiciones -->
+                        <div class="mb-4 form-check">
+                            <input type="checkbox" id="terms-check" name="terminos" class="form-check-input" required>
+                            <label for="terms-check" class="form-check-label">
+                                Acepto los <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">términos y condiciones</a>
+                            </label>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Continuar al Pago</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <!-- Booking Summary -->
+                <div id="booking-summary" class="booking-summary d-none">
+                    <div class="booking-summary-header">
+                        <h3>Resumen de Reserva</h3>
+                    </div>
+                    
+                    <div class="booking-service">
+                        <div class="booking-service-details">
+                            <h4 id="summary-service">Servicio no seleccionado</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-date-time">
+                        <p><strong>Fecha:</strong> <span id="summary-date">No seleccionada</span></p>
+                        <p><strong>Hora:</strong> <span id="summary-time">No seleccionada</span></p>
+                        <p><strong>Ubicación:</strong> <span id="summary-location">No seleccionada</span></p>
+                    </div>
+                    
+                    <div class="booking-total">
+                        <p class="total">Total: <span id="summary-price">$0.00</span></p>
+                    </div>
+                </div>
+                
+                <!-- Booking Information -->
+                <div class="booking-info mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Información de Reserva</h4>
+                            <ul class="list-unstyled">
+                                <li><i class="far fa-clock me-2"></i> Las citas pueden ser reprogramadas con al menos 24 horas de anticipación.</li>
+                                <li><i class="far fa-credit-card me-2"></i> Se requiere un depósito del 50% para confirmar la reserva.</li>
+                                <li><i class="far fa-calendar-alt me-2"></i> Todas las reservas están sujetas a disponibilidad.</li>
+                                <li><i class="far fa-bell me-2"></i> Recibirás una confirmación por correo electrónico después de completar tu reserva.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Need Help -->
+                <div class="need-help mt-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">¿Necesitas Ayuda?</h4>
+                            <p class="card-text">Si tienes alguna pregunta o necesitas asistencia con tu reserva, contáctanos:</p>
+                            <p><strong><i class="fas fa-phone me-2"></i> +1 (787) 123-4567</strong></p>
+                            <p><strong><i class="fas fa-envelope me-2"></i> reservas@spaenruedas.com</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Terms and Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Términos y Condiciones</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1. Reservaciones</h6>
+                <p>Todas las reservaciones están sujetas a disponibilidad. Se requiere un depósito del 50% para confirmar la reserva. El pago restante se realizará al momento del servicio.</p>
+                
+                <h6>2. Cancelaciones y Cambios</h6>
+                <p>Las cancelaciones o cambios deben realizarse con al menos 24 horas de anticipación. Las cancelaciones con menos de 24 horas de anticipación están sujetas a un cargo del 50% del costo del servicio. Las ausencias sin aviso (no-show) están sujetas a un cargo del 100% del costo del servicio.</p>
+                
+                <h6>3. Llegada Tardía</h6>
+                <p>Por favor, llegue 10 minutos antes de su cita programada. Si llega tarde, es posible que tengamos que reducir la duración de su servicio para cumplir con nuestro horario, pero se cobrará el precio completo.</p>
+                
+                <h6>4. Condiciones de Salud</h6>
+                <p>Informe a su terapista sobre cualquier condición médica, lesiones, alergias o restricciones físicas que pueda tener antes de su servicio. Nos reservamos el derecho de declinar servicios si consideramos que no son apropiados para su condición de salud.</p>
+                
+                <h6>5. Política de Reembolso</h6>
+                <p>Los reembolsos solo se procesarán en caso de cancelación por parte de Spa en Ruedas o por razones médicas válidas con documentación apropiada.</p>
+                
+                <h6>6. Edad Mínima</h6>
+                <p>Los clientes deben tener al menos 18 años de edad para recibir servicios sin la supervisión de un padre o tutor legal.</p>
+                
+                <h6>7. Comentarios y Reclamaciones</h6>
+                <p>Si tiene alguna queja o comentario sobre nuestros servicios, por favor infórmenos dentro de las 24 horas siguientes a su cita para que podamos abordar sus preocupaciones adecuadamente.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Acepto</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+<script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+{% endblock %}

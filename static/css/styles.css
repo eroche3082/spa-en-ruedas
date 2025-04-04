@@ -1,0 +1,841 @@
+/* 
+ * Spa en Ruedas - Main Stylesheet
+ * -------------------------------------------------- 
+ */
+
+:root {
+    --primary-color: #66b2b2;
+    --secondary-color: #f8f0e5;
+    --accent-color: #d4a373;
+    --dark-color: #2c3e50;
+    --light-color: #f9f9f9;
+    --gray-color: #e9ecef;
+    --text-color: #333;
+    --heading-font: 'Playfair Display', serif;
+    --body-font: 'Montserrat', sans-serif;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--body-font);
+    color: var(--text-color);
+    background-color: #fff;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover, 
+.btn-primary:focus {
+    background-color: #559b9b;
+    border-color: #559b9b;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.section-header {
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.section-header h2:after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Header & Navigation */
+.site-header {
+    background-color: white;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.navbar-brand span {
+    margin-left: 10px;
+}
+
+.navbar-nav .nav-link {
+    color: var(--dark-color);
+    font-weight: 500;
+    padding: 8px 15px;
+    position: relative;
+}
+
+.navbar-nav .nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover:after,
+.navbar-nav .nav-link.active:after {
+    width: 80%;
+}
+
+.navbar-buttons .btn {
+    margin-left: 10px;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 100px 0;
+    background-color: var(--secondary-color);
+}
+
+.hero-section h1 {
+    color: var(--dark-color);
+    margin-bottom: 20px;
+}
+
+.hero-section .lead {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.hero-buttons .btn {
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.hero-section img {
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Featured Services */
+.featured-services {
+    padding: 80px 0;
+}
+
+.service-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.service-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.service-content {
+    padding: 20px;
+}
+
+.service-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.service-price {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.service-duration {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.service-description {
+    color: #777;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.service-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.service-actions .btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+/* About Snippet */
+.about-snippet {
+    padding: 80px 0;
+}
+
+.about-content {
+    padding: 0 20px;
+}
+
+.about-content h2 {
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Upcoming Events */
+.upcoming-events {
+    padding: 80px 0;
+}
+
+.event-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    display: flex;
+    height: 100%;
+}
+
+.event-date {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 80px;
+}
+
+.event-date .day {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.event-date .month {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.event-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.event-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.event-location,
+.event-time {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.event-description {
+    color: #777;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 80px 0;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    height: 100%;
+}
+
+.testimonial-content {
+    padding: 25px;
+    position: relative;
+}
+
+.testimonial-content:before {
+    content: '\201C';
+    font-family: Georgia, serif;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 3rem;
+    color: #eee;
+    z-index: 0;
+}
+
+.testimonial-content p {
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+    color: #666;
+}
+
+.testimonial-author {
+    padding: 15px 25px;
+    background-color: var(--gray-color);
+}
+
+.testimonial-rating {
+    margin-bottom: 5px;
+}
+
+.testimonial-rating i {
+    color: #ffc107;
+    font-size: 0.9rem;
+}
+
+.testimonial-author h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.testimonial-author p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 80px 0;
+    background-color: var(--primary-color);
+}
+
+.cta-content {
+    color: white;
+}
+
+.cta-content h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.cta-content .lead {
+    margin-bottom: 30px;
+}
+
+.cta-section .btn-primary {
+    background-color: white;
+    color: var(--primary-color);
+    border-color: white;
+}
+
+.cta-section .btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+/* Page Header */
+.page-header {
+    padding: 80px 0;
+    background-color: var(--secondary-color);
+}
+
+.page-header h1 {
+    margin-bottom: 15px;
+}
+
+/* Services Categories */
+.categories-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.categories-nav button {
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+}
+
+.categories-nav button.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Service Benefits */
+.benefit-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    color: var(--primary-color);
+}
+
+.benefit-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.benefit-card p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* FAQ Section */
+.accordion-item {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.accordion-button {
+    font-weight: 600;
+    padding: 15px 20px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: var(--primary-color);
+}
+
+.accordion-body {
+    padding: 20px;
+    color: #666;
+}
+
+/* Form Elements */
+.form-control {
+    border-radius: 5px;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: var(--primary-color);
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+/* Booking Form */
+.booking-form {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.booking-summary {
+    background-color: var(--gray-color);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.booking-summary-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.booking-service {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.booking-service-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.booking-service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.booking-service-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.booking-service-details p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.booking-date-time {
+    margin-top: 20px;
+}
+
+.booking-date-time p {
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.booking-date-time p strong {
+    color: var(--dark-color);
+}
+
+.booking-total {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.booking-total p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.booking-total p.total {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--dark-color);
+}
+
+/* Calendar Page */
+.calendar-header {
+    margin-bottom: 30px;
+}
+
+.calendar-filters {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-filters label {
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.calendar-filters select {
+    margin-right: 20px;
+}
+
+.fc-event {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.fc-daygrid-event-dot {
+    border-color: var(--primary-color);
+}
+
+/* Contact Page */
+.contact-info-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    height: 100%;
+}
+
+.contact-info-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.contact-info-icon i {
+    font-size: 1.5rem;
+}
+
+.contact-info-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.contact-info-card p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.contact-form {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--dark-color);
+    color: #fff;
+    padding: 80px 0 20px;
+}
+
+.footer-info img {
+    margin-bottom: 20px;
+}
+
+.footer-info p {
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+}
+
+.footer-links {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ddd;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.site-footer h4 {
+    color: white;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.site-footer h4:after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 0;
+}
+
+.contact-info p {
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.copyright {
+    margin-top: 20px;
+    padding-top: 20px;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* Error Page */
+.error-page {
+    padding: 100px 0;
+}
+
+.error-page .display-1 {
+    font-size: 8rem;
+    font-weight: 700;
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        margin-top: 15px;
+    }
+    
+    .navbar-buttons {
+        margin-top: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .hero-section {
+        padding: 60px 0;
+        text-align: center;
+    }
+    
+    .hero-section img {
+        margin-top: 30px;
+    }
+    
+    .about-content {
+        text-align: center;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .site-header {
+        padding: 10px 0;
+    }
+    
+    .navbar-brand img {
+        height: 40px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .service-actions {
+        flex-direction: column;
+    }
+    
+    .service-actions .btn {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .event-card {
+        flex-direction: column;
+    }
+    
+    .event-date {
+        flex-direction: row;
+        padding: 10px;
+        justify-content: center;
+    }
+    
+    .event-date .day {
+        margin-right: 5px;
+    }
+    
+    .cta-section {
+        padding: 50px 0;
+    }
+    
+    .categories-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    
+    .site-footer {
+        padding: 50px 0 20px;
+    }
+}

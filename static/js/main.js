@@ -1,127 +1,134 @@
 /**
  * Spa en Ruedas - Main JavaScript
- * General functionality for the Spa en Ruedas website
+ * -------------------------------------------------- 
  */
 
-// Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Bootstrap tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    // Current Year for Copyright
+    const year = new Date().getFullYear();
+    const copyrightYear = document.querySelector('.copyright p');
+    if (copyrightYear) {
+        copyrightYear.innerHTML = copyrightYear.innerHTML.replace('2025', year);
+    }
+    
+    // Sticky Header
+    const header = document.querySelector('.site-header');
+    if (header) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+    
+    // Auto close mobile navigation when clicked
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarCollapse.classList.contains('show')) {
+                navbarToggler.click();
+            }
+        });
+    });
+    
+    // Initialize Bootstrap Tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
-
-    // Initialize Bootstrap popovers
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    
+    // Initialize Bootstrap Popovers
+    const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
     popoverTriggerList.map(function (popoverTriggerEl) {
         return new bootstrap.Popover(popoverTriggerEl);
     });
     
-    // Navbar scroll behavior
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.classList.add('navbar-scrolled');
-            navbar.style.padding = '10px 0';
-        } else {
-            navbar.classList.remove('navbar-scrolled');
-            navbar.style.padding = '15px 0';
-        }
-    });
-    
-    // Smooth scrolling for anchors
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            // Only apply to links that start with # but aren't just #
-            if (this.getAttribute('href').length > 1) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80, // Account for fixed header
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-    
-    // Animate elements when they come into view
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    
-    if (animateElements.length > 0) {
-        const animateOnScroll = function() {
-            animateElements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementPosition < windowHeight - 50) {
-                    element.classList.add('animated');
-                }
-            });
-        };
-        
-        // Run once to check for elements already in view
-        animateOnScroll();
-        
-        // Add scroll event listener
-        window.addEventListener('scroll', animateOnScroll);
-    }
-    
-    // Disable form submissions if there are invalid fields
-    const forms = document.querySelectorAll('.needs-validation');
-    
-    if (forms.length > 0) {
-        Array.prototype.slice.call(forms).forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }
-    
-    // Handle mobile menu toggle
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    
-    if (navbarToggler) {
-        navbarToggler.addEventListener('click', function() {
-            document.body.classList.toggle('mobile-menu-open');
-        });
-    }
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const navbar = document.querySelector('.navbar-collapse');
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        
-        if (navbar && navbarToggler) {
-            const isNavbarExpanded = navbar.classList.contains('show');
-            const clickedInsideNavbar = navbar.contains(event.target);
-            const clickedOnToggler = navbarToggler.contains(event.target);
-            
-            if (isNavbarExpanded && !clickedInsideNavbar && !clickedOnToggler) {
-                // Using Bootstrap's collapse API to hide the navbar
-                const bsCollapse = new bootstrap.Collapse(navbar);
-                bsCollapse.hide();
-            }
-        }
-    });
-    
-    // Flash message auto-dismiss
-    const flashMessages = document.querySelectorAll('.alert-dismissible');
-    
-    flashMessages.forEach(message => {
-        setTimeout(function() {
-            // Using Bootstrap's alert API to close the alert
-            const bsAlert = new bootstrap.Alert(message);
+    // Auto-dismiss alerts
+    const alerts = document.querySelectorAll('.alert:not(.alert-permanent)');
+    alerts.forEach(alert => {
+        setTimeout(() => {
+            const bsAlert = new bootstrap.Alert(alert);
             bsAlert.close();
-        }, 5000); // Auto-dismiss after 5 seconds
+        }, 5000);
     });
 });
+
+/**
+ * Format currency
+ * @param {number} amount - Amount to format
+ * @returns {string} Formatted amount
+ */
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('es-PR', {
+        style: 'currency',
+        currency: 'USD'
+    }).format(amount);
+}
+
+/**
+ * Format date
+ * @param {string} dateStr - Date string in ISO format
+ * @returns {string} Formatted date
+ */
+function formatDate(dateStr) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('es-PR', options);
+}
+
+/**
+ * Format time
+ * @param {string} timeStr - Time string in 24-hour format (HH:MM)
+ * @returns {string} Formatted time in 12-hour format
+ */
+function formatTime(timeStr) {
+    const timeParts = timeStr.split(':');
+    let hours = parseInt(timeParts[0]);
+    const minutes = timeParts[1];
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Convert 0 to 12
+    
+    return `${hours}:${minutes} ${ampm}`;
+}
+
+/**
+ * Simple email validation
+ * @param {string} email - Email to validate
+ * @returns {boolean} True if valid
+ */
+function isValidEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+/**
+ * Simple phone validation for Puerto Rico
+ * @param {string} phone - Phone to validate
+ * @returns {boolean} True if valid
+ */
+function isValidPhone(phone) {
+    // Allow formats: (123) 456-7890, 123-456-7890, 1234567890
+    const re = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    return re.test(String(phone));
+}
+
+/**
+ * Format phone number
+ * @param {string} phoneNumber - Phone number to format
+ * @returns {string} Formatted phone number
+ */
+function formatPhoneNumber(phoneNumber) {
+    const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+    const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+        return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+    return phoneNumber;
+}
