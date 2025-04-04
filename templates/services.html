@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% block title %}Servicios - Spa en Ruedas{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1>Nuestros Servicios</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Servicios</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Descubre Nuestros Tratamientos</h2>
+                <p class="text-muted">Ofrecemos una amplia gama de servicios de spa diseñados para rejuvenecer tu cuerpo y mente. Cada tratamiento es realizado por terapeutas certificados, utilizando productos naturales de alta calidad.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-6 mb-4">
+                <div class="service-detail-card h-100">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div class="service-img">
+                                <!-- SVG placeholder instead of actual image -->
+                                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="#8e44ad" opacity="0.7"/>
+                                    <text x="50%" y="50%" font-family="Arial" font-size="14" fill="white" text-anchor="middle">{{ service.name }}</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ service.name }}</h4>
+                                <p class="service-duration"><i class="far fa-clock me-2"></i> {{ service.duration }} minutos</p>
+                                <p class="card-text">{{ service.description }}</p>
+                                <div class="service-benefits mb-3">
+                                    <h6>Beneficios:</h6>
+                                    <ul>
+                                        {% for benefit in service.benefits %}
+                                        <li>{{ benefit }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="service-price mb-0">${{ service.price }}.00</p>
+                                    <a href="{{ url_for('booking') }}?service={{ service.id }}" class="btn btn-primary">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Package Deals Section -->
+<section class="package-deals-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Paquetes Especiales</h2>
+                <p class="text-muted">Disfruta de nuestros paquetes combinados para una experiencia de spa más completa y con mejor valor.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card package-card h-100">
+                    <div class="card-body text-center p-4">
+                        <h4 class="card-title">Paquete Relajación Total</h4>
+                        <div class="package-price my-3">
+                            <span>$120.00</span>
+                        </div>
+                        <div class="package-includes mb-4">
+                            <h6>Incluye:</h6>
+                            <ul class="list-unstyled">
+                                <li>Masaje relajante (60 min)</li>
+                                <li>Tratamiento facial básico</li>
+                                <li>Aromaterapia</li>
+                            </ul>
+                        </div>
+                        <a href="{{ url_for('booking') }}" class="btn btn-primary">Reservar Paquete</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card package-card h-100">
+                    <div class="card-body text-center p-4">
+                        <h4 class="card-title">Paquete Deportivo</h4>
+                        <div class="package-price my-3">
+                            <span>$135.00</span>
+                        </div>
+                        <div class="package-includes mb-4">
+                            <h6>Incluye:</h6>
+                            <ul class="list-unstyled">
+                                <li>Masaje deportivo (60 min)</li>
+                                <li>Ventosaterapia</li>
+                                <li>Hidratación profunda</li>
+                            </ul>
+                        </div>
+                        <a href="{{ url_for('booking') }}" class="btn btn-primary">Reservar Paquete</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card package-card h-100">
+                    <div class="card-body text-center p-4">
+                        <h4 class="card-title">Paquete Parejas</h4>
+                        <div class="package-price my-3">
+                            <span>$220.00</span>
+                        </div>
+                        <div class="package-includes mb-4">
+                            <h6>Incluye:</h6>
+                            <ul class="list-unstyled">
+                                <li>2 Masajes relajantes (60 min)</li>
+                                <li>2 Tratamientos faciales express</li>
+                                <li>Champagne y chocolates</li>
+                            </ul>
+                        </div>
+                        <a href="{{ url_for('booking') }}" class="btn btn-primary">Reservar Paquete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gift Cards Section -->
+<section class="gift-cards-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title mb-4">Regala una Experiencia de Bienestar</h2>
+                <p class="mb-4">Nuestras tarjetas de regalo son el obsequio perfecto para cualquier ocasión. Regala a tus seres queridos una experiencia de relajación y bienestar que nunca olvidarán.</p>
+                <ul class="gift-card-features mb-4">
+                    <li><i class="fas fa-check-circle text-primary me-2"></i> Válidas por 1 año desde la fecha de compra</li>
+                    <li><i class="fas fa-check-circle text-primary me-2"></i> Disponibles para cualquier servicio o paquete</li>
+                    <li><i class="fas fa-check-circle text-primary me-2"></i> Entrega digital inmediata o física por correo</li>
+                </ul>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Consultar Sobre Tarjetas de Regalo</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="gift-card-img">
+                    <!-- SVG placeholder instead of actual image -->
+                    <svg width="100%" height="300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" rx="10" fill="#8e44ad" opacity="0.7"/>
+                        <text x="50%" y="45%" font-family="Arial" font-size="24" fill="white" text-anchor="middle">TARJETA DE REGALO</text>
+                        <text x="50%" y="55%" font-family="Arial" font-size="18" fill="white" text-anchor="middle">Spa en Ruedas</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="cta-content text-center p-5">
+                    <h2 class="text-white mb-4">¿Listo para reservar tu experiencia de spa?</h2>
+                    <p class="text-white mb-4">Nuestros expertos terapeutas te esperan para brindarte un servicio personalizado de primera calidad.</p>
+                    <a href="{{ url_for('booking') }}" class="btn btn-light btn-lg">Reservar Ahora</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

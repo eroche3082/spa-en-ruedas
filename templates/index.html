@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% block title %}Spa en Ruedas - Servicios de Spa Móvil en Puerto Rico{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-lg-8 text-white">
+                <h1 class="display-4 fw-bold mb-4">La experiencia de spa <br>donde tú estés</h1>
+                <p class="lead mb-4">Spa en Ruedas trae directamente a tu ubicación en Puerto Rico una experiencia de relajación y bienestar completa en nuestros vagones de spa móviles completamente equipados.</p>
+                <div class="hero-buttons">
+                    <a href="{{ url_for('booking') }}" class="btn btn-primary btn-lg me-3 mb-2 mb-md-0">Reservar Ahora</a>
+                    <a href="{{ url_for('services') }}" class="btn btn-outline-light btn-lg">Ver Servicios</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Overview Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Nuestros Servicios Premium</h2>
+                <p class="text-muted">Descubre nuestra variedad de servicios diseñados para brindarte una experiencia de relajación completa.</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-4 mb-4">
+                <div class="card service-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-spa text-primary"></i>
+                        </div>
+                        <h4 class="card-title">{{ service.name }}</h4>
+                        <p class="card-text text-muted">{{ service.description }}</p>
+                        <p class="service-price">${{ service.price }}.00</p>
+                        <a href="{{ url_for('booking') }}?service={{ service.id }}" class="btn btn-outline-primary">Reservar Ahora</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('services') }}" class="btn btn-primary">Ver Todos Los Servicios</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="about-img-container">
+                    <div class="about-img-bg"></div>
+                    <div class="about-img">
+                        <!-- SVG placeholder instead of actual image -->
+                        <svg width="100%" height="400" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100%" height="100%" fill="#8e44ad" opacity="0.7"/>
+                            <text x="50%" y="50%" font-family="Arial" font-size="24" fill="white" text-anchor="middle">Spa en Ruedas</text>
+                            <text x="50%" y="60%" font-family="Arial" font-size="16" fill="white" text-anchor="middle">Spa Móvil en Puerto Rico</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="section-title mb-4">Spa en Ruedas: El Concepto</h2>
+                <p class="mb-4">Spa en Ruedas es un innovador concepto de spa móvil en Puerto Rico que lleva la experiencia de relajación directamente a ti. Nuestros vagones especialmente adaptados están equipados con todas las comodidades de un spa tradicional, pero con la ventaja de poder ubicarse en diferentes locaciones a lo largo de la isla.</p>
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="feature-icon me-3">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Ubicación Flexible</h5>
+                                <p class="text-muted mb-0">Nos movemos por toda la isla</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="feature-icon me-3">
+                                <i class="fas fa-certificate text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">Terapeutas Certificados</h5>
+                                <p class="text-muted mb-0">Profesionales experimentados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ url_for('about') }}" class="btn btn-primary">Conoce Más Sobre Nosotros</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Events Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Próximos Eventos</h2>
+                <p class="text-muted">Descubre dónde estará Spa en Ruedas próximamente y asegura tu reserva.</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for event in events %}
+            <div class="col-md-4 mb-4">
+                <div class="card event-card h-100">
+                    <div class="card-body p-4">
+                        <div class="event-date mb-3">
+                            <span>{{ event.date }}</span>
+                        </div>
+                        <h4 class="card-title">{{ event.title }}</h4>
+                        <p class="card-text text-muted">{{ event.description }}</p>
+                        <a href="{{ url_for('booking') }}" class="btn btn-outline-primary">Reservar</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('calendar') }}" class="btn btn-primary">Ver Calendario Completo</a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+                <p class="text-muted">Conoce las experiencias de quienes ya han disfrutado de nuestros servicios.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content p-4">
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="mb-4">"Una experiencia increíble. El servicio fue excelente y los terapeutas muy profesionales. La comodidad de tener el spa cerca de mi hotel en San Juan fue lo mejor."</p>
+                        <div class="testimonial-author">
+                            <h5 class="mb-1">María Rodríguez</h5>
+                            <p class="text-muted mb-0">Condado, San Juan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content p-4">
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="mb-4">"Reservé un masaje durante mi crucero y fue la mejor decisión. El vagón estaba impecable y la atención fue de primera. Definitivamente lo recomendaré a todos mis amigos."</p>
+                        <div class="testimonial-author">
+                            <h5 class="mb-1">John Smith</h5>
+                            <p class="text-muted mb-0">Turista de Crucero</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content p-4">
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="mb-4">"El concepto es genial y la ejecución aún mejor. Me encantó poder disfrutar de un spa de calidad en Rincón sin tener que desplazarme lejos de la playa."</p>
+                        <div class="testimonial-author">
+                            <h5 class="mb-1">Carlos Vega</h5>
+                            <p class="text-muted mb-0">Rincón, Puerto Rico</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="cta-content text-center p-5">
+                    <h2 class="text-white mb-4">¿Listo para disfrutar de una experiencia de spa única?</h2>
+                    <p class="text-white mb-4">Reserva ahora y déjanos llevarte a un viaje de relajación y bienestar.</p>
+                    <a href="{{ url_for('booking') }}" class="btn btn-light btn-lg">Reservar Ahora</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

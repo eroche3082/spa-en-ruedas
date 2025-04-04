@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %}Pago - Spa en Ruedas{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1>Pago Seguro</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url_for('booking') }}">Reserva</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Pago</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Payment Section -->
+<section class="payment-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="payment-card">
+                    <div class="payment-header p-4 text-center">
+                        <h3>Completa Tu Pago</h3>
+                        <p class="text-muted">Toda la información es procesada de forma segura</p>
+                    </div>
+                    <div class="payment-body p-4">
+                        <!-- Order Summary -->
+                        <div class="order-summary mb-4">
+                            <h4 class="mb-3">Resumen de la Reserva</h4>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Servicio:</span>
+                                        <span>{{ service.name }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Fecha:</span>
+                                        <span>{{ booking.date }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Hora:</span>
+                                        <span>{{ booking.time }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Ubicación:</span>
+                                        <span>{{ booking.location_name }}</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <strong>Total a Pagar:</strong>
+                                        <strong>${{ service.price }}.00</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Form -->
+                        <form id="paymentForm" method="post" action="{{ url_for('payment') }}">
+                            <!-- Payment Methods -->
+                            <div class="payment-methods mb-4">
+                                <h4 class="mb-3">Método de Pago</h4>
+                                <div class="payment-options mb-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="credit" checked>
+                                        <label class="form-check-label" for="creditCard">Tarjeta de Crédito</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="debitCard" value="debit">
+                                        <label class="form-check-label" for="debitCard">Tarjeta de Débito</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-icons mb-3">
+                                    <i class="fab fa-cc-visa fa-2x me-2"></i>
+                                    <i class="fab fa-cc-mastercard fa-2x me-2"></i>
+                                    <i class="fab fa-cc-amex fa-2x me-2"></i>
+                                    <i class="fab fa-cc-discover fa-2x"></i>
+                                </div>
+                                
+                                <!-- Credit Card Information -->
+                                <div id="creditCardForm">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <div class="form-group mb-3">
+                                                <label for="card_number" class="form-label">Número de Tarjeta <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="card_number" name="card_number" placeholder="XXXX XXXX XXXX XXXX" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label for="card_holder" class="form-label">Nombre en la Tarjeta <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="card_holder" name="card_holder" placeholder="Como aparece en la tarjeta" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <div class="form-group mb-3">
+                                                <label for="expiry_date" class="form-label">Fecha de Expiración <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="expiry_date" name="expiry_date" placeholder="MM/AA" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <div class="form-group mb-3">
+                                                <label for="cvv" class="form-label">CVV <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="cvv" name="cvv" placeholder="XXX" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Billing Information -->
+                            <div class="billing-info mb-4">
+                                <h4 class="mb-3">Dirección de Facturación</h4>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="billing_address" class="form-label">Dirección <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="billing_address" name="billing_address" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="billing_city" class="form-label">Ciudad <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="billing_city" name="billing_city" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="billing_zipcode" class="form-label">Código Postal <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="billing_zipcode" name="billing_zipcode" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="billing_country" class="form-label">País <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="billing_country" name="billing_country" required>
+                                                <option value="US">Estados Unidos</option>
+                                                <option value="PR" selected>Puerto Rico</option>
+                                                <option value="CA">Canadá</option>
+                                                <option value="MX">México</option>
+                                                <option value="ES">España</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Confirmar Pago</button>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-lock me-1"></i> La información de tu pago está protegida con encriptación SSL
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/payment.js') }}"></script>
+{% endblock %}

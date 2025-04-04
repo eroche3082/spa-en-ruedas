@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block title %}Reserva de Servicios - Spa en Ruedas{% endblock %}
+
+{% block extra_css %}
+<!-- Datepicker CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1>Reserva tu Sesión</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Reserva</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Section -->
+<section class="booking-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="booking-card">
+                    <div class="booking-header p-4 text-center">
+                        <h3>Completa Tu Reserva</h3>
+                        <p class="text-muted">Selecciona el servicio, fecha y hora que prefieras</p>
+                    </div>
+                    <div class="booking-body p-4">
+                        <!-- Booking Form -->
+                        <form id="bookingForm" method="post" action="{{ url_for('booking') }}">
+                            <!-- Personal Information -->
+                            <div class="booking-section mb-4">
+                                <h4 class="mb-3">Información Personal</h4>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="name" class="form-label">Nombre completo <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="name" name="name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="email" class="form-label">Correo electrónico <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="phone" class="form-label">Teléfono <span class="text-danger">*</span></label>
+                                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Service Selection -->
+                            <div class="booking-section mb-4">
+                                <h4 class="mb-3">Selección de Servicio</h4>
+                                <div class="form-group mb-3">
+                                    <label for="service" class="form-label">Servicio <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="service" name="service" required>
+                                        <option value="">Selecciona un servicio</option>
+                                        {% for service in services %}
+                                        <option value="{{ service.id }}" data-price="{{ service.price }}">{{ service.name }} - ${{ service.price }}.00</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                
+                                <div id="selectedServiceInfo" class="card mb-3 d-none">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="serviceTitle"></h5>
+                                        <p class="card-text" id="serviceDescription"></p>
+                                        <p class="mb-0"><strong>Duración:</strong> <span id="serviceDuration"></span> minutos</p>
+                                        <p class="mb-0"><strong>Precio:</strong> $<span id="servicePrice"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Location & Date Selection -->
+                            <div class="booking-section mb-4">
+                                <h4 class="mb-3">Ubicación y Fecha</h4>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="location" class="form-label">Ubicación <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="location" name="location" required>
+                                                <option value="">Selecciona una ubicación</option>
+                                                {% for location in locations %}
+                                                <option value="{{ location.id }}">{{ location.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="date" class="form-label">Fecha <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="date" name="date" placeholder="Selecciona una fecha" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="time" class="form-label">Hora <span class="text-danger">*</span></label>
+                                            <select class="form-select" id="time" name="time" required disabled>
+                                                <option value="">Primero selecciona fecha y ubicación</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Additional Comments -->
+                            <div class="booking-section mb-4">
+                                <h4 class="mb-3">Información Adicional</h4>
+                                <div class="form-group mb-3">
+                                    <label for="comments" class="form-label">Comentarios o requerimientos especiales</label>
+                                    <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- Terms & Conditions -->
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">
+                                    He leído y acepto los <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">términos y condiciones</a>
+                                </label>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Continuar al Pago</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Terms & Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Términos y Condiciones</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>Política de Reservaciones</h6>
+                <p>Para garantizar su reserva, se requiere un depósito del 50% del valor del servicio. El saldo restante se pagará al momento de recibir el servicio.</p>
+                
+                <h6>Política de Cancelación</h6>
+                <p>Las cancelaciones deben realizarse con al menos 24 horas de anticipación para recibir un reembolso completo del depósito. Cancelaciones con menos de 24 horas de anticipación no serán reembolsables.</p>
+                
+                <h6>Llegada Tardía</h6>
+                <p>Por respeto al tiempo de todos nuestros clientes, le pedimos que llegue 10 minutos antes de su cita. Si llega tarde, su sesión podría acortarse para terminar a la hora programada, cobrándose el precio completo del servicio.</p>
+                
+                <h6>Consideraciones de Salud</h6>
+                <p>Por favor informe a su terapeuta sobre cualquier condición médica, lesiones o alergias antes de comenzar el servicio. Ciertas condiciones pueden contraindicar algunos tratamientos.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Datepicker JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+{% endblock %}
