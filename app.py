@@ -3,6 +3,7 @@ import logging
 from flask import Flask, render_template
 from flask_cors import CORS
 from flask_mail import Mail
+from flask_wtf.csrf import CSRFProtect
 from models_sql import db
 
 # Configurar logging
@@ -22,6 +23,9 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Habilitar CORS
 CORS(app)
+
+# Configurar CSRF Protection
+csrf = CSRFProtect(app)
 
 # Inicializar extensiones
 db.init_app(app)

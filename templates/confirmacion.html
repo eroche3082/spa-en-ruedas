@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirmación - Spa en Ruedas{% endblock %}
+
+{% block content %}
+<!-- Confirmation Header -->
+<section class="page-header bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold">¡Reserva Confirmada!</h1>
+                <p class="lead">Su reserva ha sido procesada exitosamente</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Confirmation Details -->
+<section class="confirmation-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="confirmation-details">
+                    <div class="card">
+                        <div class="card-body text-center p-5">
+                            <div class="confirmation-icon mb-4">
+                                <i class="fas fa-check-circle fa-5x text-success"></i>
+                            </div>
+                            
+                            <h2 class="card-title mb-4">¡Gracias por su reserva!</h2>
+                            <p class="card-text">Hemos enviado un correo electrónico de confirmación a <strong>{{ reserva.cliente.email }}</strong> con todos los detalles.</p>
+                            
+                            <div class="confirmation-code my-4 py-3 px-4 bg-light rounded">
+                                <h5 class="mb-2">Código de Confirmación:</h5>
+                                <h3 class="text-primary">{{ reserva.codigo_confirmacion }}</h3>
+                            </div>
+                            
+                            <p><small>Guarde este código para cualquier consulta o modificación futura.</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="card-title mb-0">Detalles de su Reserva</h3>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <h5 class="text-primary mb-3">Información del Servicio</h5>
+                                    <p><strong>Servicio:</strong> {{ reserva.servicio.nombre }}</p>
+                                    <p><strong>Duración:</strong> {{ reserva.servicio.duracion }} minutos</p>
+                                    <p><strong>Precio:</strong> ${{ "%.2f"|format(reserva.servicio.precio) }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="text-primary mb-3">Información de la Cita</h5>
+                                    <p><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+                                    <p><strong>Hora:</strong> {{ reserva.hora }}</p>
+                                    <p><strong>Ubicación:</strong> {{ reserva.ubicacion.nombre }}</p>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <h5 class="text-primary mb-3">Información del Cliente</h5>
+                                    <p><strong>Nombre:</strong> {{ reserva.cliente.nombre }}</p>
+                                    <p><strong>Email:</strong> {{ reserva.cliente.email }}</p>
+                                    <p><strong>Teléfono:</strong> {{ reserva.cliente.telefono }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="text-primary mb-3">Información del Pago</h5>
+                                    <p><strong>Estado:</strong> <span class="badge bg-success">Completado</span></p>
+                                    <p><strong>Método:</strong> {{ pago.metodo|title }}</p>
+                                    <p><strong>Referencia:</strong> {{ pago.referencia }}</p>
+                                    <p><strong>Fecha:</strong> {{ pago.fecha }}</p>
+                                </div>
+                            </div>
+                            
+                            {% if reserva.comentarios %}
+                            <hr>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <h5 class="text-primary mb-3">Comentarios</h5>
+                                    <p>{{ reserva.comentarios }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="confirmation-actions mt-4 text-center">
+                        <a href="{{ url_for('index') }}" class="btn btn-primary me-2">Volver al Inicio</a>
+                        <a href="{{ url_for('verificar_reserva') }}" class="btn btn-outline-primary">Verificar Estado de Reserva</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="card-title mb-0">Instrucciones</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-clock me-2 text-primary"></i>
+                                <strong>Llegue 10 minutos antes</strong> de su cita programada.
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-ban me-2 text-primary"></i>
+                                Para <strong>cancelaciones</strong>, contáctenos con al menos 24 horas de anticipación.
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-tshirt me-2 text-primary"></i>
+                                Use <strong>ropa cómoda</strong> para su sesión.
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-utensils me-2 text-primary"></i>
+                                <strong>Evite comidas pesadas</strong> antes de su tratamiento.
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-phone me-2 text-primary"></i>
+                                Para cualquier consulta, llame al <strong>+1 (787) 123-4567</strong>.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">¡Comparta su experiencia!</h5>
+                        <p class="card-text">Síganos en redes sociales y comparta su experiencia con nosotros.</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="btn btn-outline-primary btn-sm me-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            <a href="#" class="btn btn-outline-primary btn-sm me-2"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="#" class="btn btn-outline-primary btn-sm"><i class="fab fa-twitter"></i> Twitter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

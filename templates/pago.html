@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Pago - Spa en Ruedas{% endblock %}
+
+{% block content %}
+<!-- Payment Header -->
+<section class="page-header bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold">Finalizar Reserva</h1>
+                <p class="lead">Complete el pago para confirmar su reserva</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Payment Form -->
+<section class="payment-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="payment-form">
+                    <h3 class="mb-4">Detalles del Pago</h3>
+                    
+                    <div class="payment-options mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Seleccione su método de pago</h4>
+                                
+                                <div class="mt-4">
+                                    <div class="payment-methods">
+                                        <form action="{{ url_for('pago') }}" method="POST" id="payment-form">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                            
+                                            <div class="text-center mb-4">
+                                                <button type="submit" class="btn btn-primary btn-lg" id="stripe-button">
+                                                    <i class="fab fa-cc-stripe me-2"></i> Pagar con Tarjeta
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="payment-icons text-center">
+                                                <i class="fab fa-cc-visa fa-2x mx-2"></i>
+                                                <i class="fab fa-cc-mastercard fa-2x mx-2"></i>
+                                                <i class="fab fa-cc-amex fa-2x mx-2"></i>
+                                                <i class="fab fa-cc-discover fa-2x mx-2"></i>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-notice mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5><i class="fas fa-lock me-2"></i> Pago Seguro</h5>
+                                <p class="mb-0">Todos los pagos son procesados de forma segura a través de Stripe. Sus datos de pago nunca son almacenados en nuestros servidores.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <!-- Booking Summary -->
+                <div class="booking-summary">
+                    <div class="booking-summary-header">
+                        <h3>Resumen de Reserva</h3>
+                    </div>
+                    
+                    <div class="booking-service">
+                        <div class="booking-service-image">
+                            <img src="{{ url_for('static', filename='img/services/' + reserva.servicio.imagen) if reserva.servicio.imagen else url_for('static', filename='img/service-default.jpg') }}" alt="{{ reserva.servicio.nombre }}">
+                        </div>
+                        <div class="booking-service-details">
+                            <h4>{{ reserva.servicio.nombre }}</h4>
+                            <p>{{ reserva.servicio.duracion }} minutos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-date-time">
+                        <p><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+                        <p><strong>Hora:</strong> {{ reserva.hora }}</p>
+                        <p><strong>Ubicación:</strong> {{ reserva.ubicacion.nombre }}</p>
+                    </div>
+                    
+                    <div class="booking-client">
+                        <p><strong>Nombre:</strong> {{ reserva.cliente.nombre }}</p>
+                        <p><strong>Email:</strong> {{ reserva.cliente.email }}</p>
+                        <p><strong>Teléfono:</strong> {{ reserva.cliente.telefono }}</p>
+                    </div>
+                    
+                    <div class="booking-total">
+                        <p>Subtotal: <span>${{ "%.2f"|format(reserva.servicio.precio) }}</span></p>
+                        <p class="total">Total: <span>${{ "%.2f"|format(reserva.servicio.precio) }}</span></p>
+                    </div>
+                </div>
+                
+                <!-- Cancel Booking -->
+                <div class="cancel-booking mt-4">
+                    <a href="{{ url_for('reservar') }}" class="btn btn-outline-danger w-100">Cancelar y Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/payment.js') }}"></script>
+{% endblock %}

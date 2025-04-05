@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de Reserva - Spa en Ruedas{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold">Detalle de su Reserva</h1>
+                <p class="lead">Información completa de su cita agendada</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Details -->
+<section class="booking-details-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="booking-details">
+                    <!-- Booking Status Card -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="me-4">
+                                    {% if reserva.estado == 'confirmada' %}
+                                    <div class="status-icon text-success">
+                                        <i class="fas fa-check-circle fa-3x"></i>
+                                    </div>
+                                    {% elif reserva.estado == 'pendiente' %}
+                                    <div class="status-icon text-warning">
+                                        <i class="fas fa-clock fa-3x"></i>
+                                    </div>
+                                    {% elif reserva.estado == 'cancelada' %}
+                                    <div class="status-icon text-danger">
+                                        <i class="fas fa-times-circle fa-3x"></i>
+                                    </div>
+                                    {% elif reserva.estado == 'completada' %}
+                                    <div class="status-icon text-primary">
+                                        <i class="fas fa-calendar-check fa-3x"></i>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <h3 class="mb-1">Estado de su reserva: 
+                                        {% if reserva.estado == 'confirmada' %}
+                                        <span class="badge bg-success">Confirmada</span>
+                                        {% elif reserva.estado == 'pendiente' %}
+                                        <span class="badge bg-warning text-dark">Pendiente</span>
+                                        {% elif reserva.estado == 'cancelada' %}
+                                        <span class="badge bg-danger">Cancelada</span>
+                                        {% elif reserva.estado == 'completada' %}
+                                        <span class="badge bg-primary">Completada</span>
+                                        {% endif %}
+                                    </h3>
+                                    <p class="mb-0">Código de confirmación: <strong>{{ reserva.codigo_confirmacion }}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Booking Info Card -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="mb-0"><i class="fas fa-calendar-alt me-2"></i> Información de la Cita</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-lg-4">
+                                    <img src="{{ url_for('static', filename='img/services/' + reserva.servicio.imagen) if reserva.servicio.imagen else url_for('static', filename='img/service-default.jpg') }}" 
+                                        alt="{{ reserva.servicio.nombre }}" class="img-fluid rounded">
+                                </div>
+                                <div class="col-lg-8">
+                                    <h4>{{ reserva.servicio.nombre }}</h4>
+                                    <p>{{ reserva.servicio.descripcion }}</p>
+                                    <div class="d-flex flex-wrap">
+                                        <div class="me-4 mb-3">
+                                            <i class="fas fa-clock me-2 text-primary"></i>
+                                            <strong>Duración:</strong> {{ reserva.servicio.duracion }} minutos
+                                        </div>
+                                        <div class="me-4 mb-3">
+                                            <i class="fas fa-tag me-2 text-primary"></i>
+                                            <strong>Precio:</strong> ${{ "%.2f"|format(reserva.servicio.precio) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <h5 class="mb-3"><i class="fas fa-calendar-day me-2 text-primary"></i> Fecha y Hora</h5>
+                                    <p><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+                                    <p><strong>Hora:</strong> {{ reserva.hora }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="mb-3"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Ubicación</h5>
+                                    <p><strong>Sede:</strong> {{ reserva.ubicacion.nombre }}</p>
+                                    <p><strong>Dirección:</strong> {{ reserva.ubicacion.direccion }}</p>
+                                </div>
+                            </div>
+                            
+                            {% if reserva.terapista %}
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <h5 class="mb-3"><i class="fas fa-user-md me-2 text-primary"></i> Terapeuta Asignado</h5>
+                                    <p><strong>Nombre:</strong> {{ reserva.terapista.nombre }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if reserva.comentarios %}
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <h5 class="mb-3"><i class="fas fa-comment-alt me-2 text-primary"></i> Notas Adicionales</h5>
+                                    <p>{{ reserva.comentarios }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Info Card -->
+                    {% if reserva.pagos %}
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h3 class="mb-0"><i class="fas fa-credit-card me-2"></i> Información de Pago</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                {% for pago in reserva.pagos %}
+                                <div class="col-md-6">
+                                    <p><strong>Estado:</strong> 
+                                        {% if pago.estado == 'completado' %}
+                                        <span class="badge bg-success">Completado</span>
+                                        {% elif pago.estado == 'pendiente' %}
+                                        <span class="badge bg-warning text-dark">Pendiente</span>
+                                        {% elif pago.estado == 'rechazado' %}
+                                        <span class="badge bg-danger">Rechazado</span>
+                                        {% elif pago.estado == 'reembolsado' %}
+                                        <span class="badge bg-info">Reembolsado</span>
+                                        {% endif %}
+                                    </p>
+                                    <p><strong>Método:</strong> {{ pago.metodo|title }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Monto:</strong> ${{ "%.2f"|format(pago.monto) }}</p>
+                                    <p><strong>Referencia:</strong> {{ pago.referencia }}</p>
+                                    <p><strong>Fecha:</strong> {{ pago.fecha }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Client Info Card -->
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h4 class="mb-0"><i class="fas fa-user me-2"></i> Información del Cliente</h4>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Nombre:</strong> {{ reserva.cliente.nombre }}</p>
+                        <p><strong>Email:</strong> {{ reserva.cliente.email }}</p>
+                        <p><strong>Teléfono:</strong> {{ reserva.cliente.telefono }}</p>
+                    </div>
+                </div>
+                
+                <!-- Actions Card -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-tools me-2"></i> Acciones</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            {% if reserva.estado == 'confirmada' %}
+                            <a href="#" class="btn btn-outline-danger">
+                                <i class="fas fa-times-circle me-2"></i> Solicitar Cancelación
+                            </a>
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class="fas fa-calendar-alt me-2"></i> Solicitar Cambio de Fecha
+                            </a>
+                            {% endif %}
+                            <a href="{{ url_for('reservar') }}" class="btn btn-outline-success">
+                                <i class="fas fa-plus-circle me-2"></i> Nueva Reserva
+                            </a>
+                            <a href="{{ url_for('contacto') }}" class="btn btn-outline-info">
+                                <i class="fas fa-envelope me-2"></i> Contactar Soporte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructions Card -->
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h4 class="mb-0"><i class="fas fa-info-circle me-2 text-primary"></i> Instrucciones</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-clock me-2 text-primary"></i>
+                                Llegue <strong>10 minutos antes</strong> de su cita.
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-tshirt me-2 text-primary"></i>
+                                Use <strong>ropa cómoda</strong> para su sesión.
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-mobile-alt me-2 text-primary"></i>
+                                <strong>Apague su teléfono</strong> durante el tratamiento.
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-utensils me-2 text-primary"></i>
+                                <strong>Evite comidas pesadas</strong> antes de su tratamiento.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{{ url_for('index') }}" class="btn btn-primary me-2">
+                    <i class="fas fa-home me-2"></i> Volver al Inicio
+                </a>
+                <a href="{{ url_for('verificar_reserva') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-search me-2"></i> Verificar Otra Reserva
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

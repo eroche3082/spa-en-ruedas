@@ -200,13 +200,19 @@ def process_payment(payment_data: Dict[str, Any]) -> Dict[str, Any]:
     """Procesar un pago."""
     reservacion_id = payment_data["reservacion_id"]
     
+    # Generar referencia
+    reference = payment_data.get("referencia")
+    if not reference:
+        # Si no hay referencia (ej. de Stripe), generar una
+        reference = f"PAY-{uuid.uuid4().hex[:8].upper()}"
+    
     # Crear registro de pago
     pago = Pago(
         reservacion_id=reservacion_id,
         monto=payment_data["monto"],
         metodo=payment_data["metodo"],
         estado="completado",
-        referencia=f"PAY-{uuid.uuid4().hex[:8].upper()}"
+        referencia=reference
     )
     
     db.session.add(pago)
@@ -223,7 +229,9 @@ def process_payment(payment_data: Dict[str, Any]) -> Dict[str, Any]:
         "amount": pago.monto,
         "reference": pago.referencia,
         "timestamp": pago.fecha.isoformat(),
-        "confirmation_code": reservacion.codigo_confirmacion
+        "metodo": pago.metodo,
+        "confirmation_code": reservacion.codigo_confirmacion,
+        "fecha": pago.fecha.strftime("%d/%m/%Y %H:%M")
     }
 
 def get_available_slots(date_str: str, location_id: int) -> List[str]:

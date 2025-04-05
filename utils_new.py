@@ -47,6 +47,16 @@ def generate_booking_confirmation_email(booking: Dict[str, Any], payment: Dict[s
     booking_date = booking.get('fecha', 'Fecha pendiente')
     booking_time = booking.get('hora', 'Hora pendiente')
     location = booking.get('ubicacion', {}).get('nombre', 'Ubicación pendiente')
+    service_price = booking.get('servicio', {}).get('precio', 0)
+    
+    # Método de pago formateado
+    payment_method = payment.get('metodo', 'tarjeta')
+    if payment_method == 'tarjeta':
+        payment_method = 'Tarjeta de Crédito/Débito'
+    elif payment_method == 'paypal':
+        payment_method = 'PayPal'
+    elif payment_method == 'efectivo':
+        payment_method = 'Efectivo'
     
     try:
         fecha_obj = datetime.strptime(booking_date, "%Y-%m-%d")
@@ -69,6 +79,9 @@ def generate_booking_confirmation_email(booking: Dict[str, Any], payment: Dict[s
                 .header {{ background-color: #9c6644; color: white; padding: 10px; text-align: center; }}
                 .content {{ padding: 20px; }}
                 .footer {{ text-align: center; padding: 10px; font-size: 12px; color: #666; }}
+                .payment-details {{ background-color: #f8f9fa; padding: 15px; margin-top: 15px; border-radius: 5px; }}
+                .payment-details h3 {{ margin-top: 0; color: #9c6644; }}
+                .important {{ color: #9c6644; font-weight: bold; }}
             </style>
         </head>
         <body>
@@ -78,19 +91,35 @@ def generate_booking_confirmation_email(booking: Dict[str, Any], payment: Dict[s
                 </div>
                 <div class="content">
                     <p>Estimado/a {booking.get('cliente', {}).get('nombre', 'Cliente')},</p>
-                    <p>Gracias por reservar con Spa en Ruedas. A continuación encontrará los detalles de su reserva:</p>
+                    <p>Su reserva con Spa en Ruedas ha sido <span class="important">confirmada y pagada</span>. A continuación encontrará los detalles:</p>
+                    
+                    <h3>Detalles de la Reserva</h3>
                     <ul>
                         <li><strong>Servicio:</strong> {service_name}</li>
                         <li><strong>Fecha:</strong> {booking_date}</li>
                         <li><strong>Hora:</strong> {booking_time}</li>
                         <li><strong>Ubicación:</strong> {location}</li>
-                        <li><strong>Código de Confirmación:</strong> {payment.get('confirmation_code', booking.get('codigo_confirmacion', 'Pendiente'))}</li>
+                        <li><strong>Código de Confirmación:</strong> <span class="important">{payment.get('confirmation_code', booking.get('codigo_confirmacion', 'Pendiente'))}</span></li>
                     </ul>
-                    <p>Si necesita hacer algún cambio o tiene alguna pregunta, no dude en contactarnos.</p>
-                    <p>¡Esperamos verle pronto!</p>
+                    
+                    <div class="payment-details">
+                        <h3>Detalles del Pago</h3>
+                        <ul>
+                            <li><strong>Método de Pago:</strong> {payment_method}</li>
+                            <li><strong>Monto:</strong> ${format_currency(service_price)}</li>
+                            <li><strong>Referencia de Pago:</strong> {payment.get('reference', 'N/A')}</li>
+                            <li><strong>Fecha de Pago:</strong> {payment.get('fecha', 'N/A')}</li>
+                            <li><strong>Estado:</strong> Completado</li>
+                        </ul>
+                    </div>
+                    
+                    <p>Si necesita hacer algún cambio o tiene alguna pregunta, no dude en contactarnos referenciando su código de confirmación.</p>
+                    <p>Por favor, llegue 10 minutos antes de su cita. Recuerde vestir ropa cómoda para su sesión.</p>
+                    <p>¡Esperamos brindarle una experiencia de relajación excepcional!</p>
                 </div>
                 <div class="footer">
                     <p>Spa en Ruedas - Puerto Rico</p>
+                    <p>Tel: +1 (787) 123-4567 | Email: info@spaenruedas.com</p>
                     <p>Este es un correo electrónico automático, por favor no responda.</p>
                 </div>
             </div>
