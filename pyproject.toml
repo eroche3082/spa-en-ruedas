@@ -15,4 +15,7 @@ dependencies = [
     "stripe>=12.0.0",
     "flask-wtf>=1.2.2",
     "openai>=1.70.0",
+    "google-generativeai>=0.8.4",
+    "anthropic>=0.49.0",
+    "pillow>=11.1.0",
 ]

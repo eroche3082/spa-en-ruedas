@@ -8,10 +8,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatHeader = document.getElementById('chat-header');
     const chatCollapseBtn = document.getElementById('chat-collapse-btn');
     const chatResetBtn = document.getElementById('chat-reset-btn');
+    const chatImgBtn = document.getElementById('chat-img-btn');
+    const chatImgInput = document.getElementById('chat-img-input');
+    const chatImgPreviewContainer = document.getElementById('chat-img-preview-container');
+    const chatImgPreview = document.getElementById('chat-img-preview');
+    const chatImgCancel = document.getElementById('chat-img-cancel');
 
     // Estado inicial
     let isCollapsed = true;
     let isLoading = false;
+    let currentImage = null;
 
     // Inicializar widget
     chatWidget.classList.add('chat-collapsed');
@@ -56,6 +62,35 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enviar mensaje al hacer clic en el botón de enviar
     chatSendBtn.addEventListener('click', sendMessage);
 
+    // Botón para seleccionar imagen
+    chatImgBtn.addEventListener('click', function() {
+        chatImgInput.click();
+    });
+
+    // Cuando se selecciona una imagen
+    chatImgInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                currentImage = event.target.result;
+                chatImgPreview.src = currentImage;
+                chatImgPreviewContainer.style.display = 'block';
+                
+                // Desplegar chat si está colapsado
+                if (isCollapsed) {
+                    toggleChatCollapse();
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Cancelar imagen seleccionada
+    chatImgCancel.addEventListener('click', function() {
+        cancelImageSelection();
+    });
+
     // Cargar historial de mensajes al inicio
     loadChatHistory();
 
@@ -73,13 +108,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Función para cancelar la selección de imagen
+    function cancelImageSelection() {
+        currentImage = null;
+        chatImgInput.value = '';
+        chatImgPreviewContainer.style.display = 'none';
+    }
+
     // Función para enviar un mensaje
     function sendMessage() {
         const mensaje = chatInput.value.trim();
-        if (mensaje === '' || isLoading) return;
+        if ((mensaje === '' && !currentImage) || isLoading) return;
 
-        // Agregar mensaje del usuario al chat
-        addMessage(mensaje, 'user');
+        // Agregar mensaje del usuario al chat (con o sin imagen)
+        const imagenAdjunta = currentImage ? true : false;
+        const textoMensaje = mensaje + (imagenAdjunta ? " [Imagen adjunta]" : "");
+        addMessage(textoMensaje, 'user', imagenAdjunta ? currentImage : null);
         
         // Limpiar input
         chatInput.value = '';
@@ -92,13 +136,23 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleChatCollapse();
         }
 
+        // Preparar datos para enviar
+        const messageData = {
+            mensaje: mensaje
+        };
+        
+        // Añadir imagen si existe
+        if (currentImage) {
+            messageData.imagen = currentImage;
+        }
+
         // Enviar mensaje al servidor
         fetch('/chat/enviar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ mensaje: mensaje }),
+            body: JSON.stringify(messageData),
         })
         .then(response => response.json())
         .then(data => {
@@ -113,6 +167,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 addMessage('Lo siento, ha ocurrido un error al procesar tu mensaje.', 'assistant');
                 console.error('Error en la respuesta:', data.error);
             }
+            
+            // Limpiar imagen seleccionada
+            cancelImageSelection();
         })
         .catch(error => {
             // Ocultar indicador de carga
@@ -121,11 +178,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Mostrar error
             addMessage('Lo siento, ha ocurrido un error de conexión.', 'assistant');
             console.error('Error al enviar mensaje:', error);
+            
+            // Limpiar imagen seleccionada
+            cancelImageSelection();
         });
     }
 
     // Función para agregar un mensaje al chat
-    function addMessage(content, role) {
+    function addMessage(content, role, imageUrl = null) {
         const messageEl = document.createElement('div');
         messageEl.className = `chat-message ${role}-message`;
         
@@ -135,7 +195,26 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const contentEl = document.createElement('div');
         contentEl.className = 'message-content';
-        contentEl.textContent = content;
+        
+        // Si hay imagen adjunta al mensaje del usuario, mostrarla
+        if (role === 'user' && imageUrl) {
+            // Si el contenido solo dice "[Imagen adjunta]", mostrar solo la imagen
+            if (content === "[Imagen adjunta]") {
+                contentEl.textContent = "Imagen:";
+            } else {
+                contentEl.textContent = content.replace(" [Imagen adjunta]", "");
+            }
+            
+            // Añadir la imagen
+            const imgEl = document.createElement('img');
+            imgEl.src = imageUrl;
+            imgEl.className = 'message-image';
+            imgEl.alt = 'Imagen adjunta';
+            imgEl.loading = 'lazy';
+            contentEl.appendChild(imgEl);
+        } else {
+            contentEl.textContent = content;
+        }
         
         messageEl.appendChild(avatarEl);
         messageEl.appendChild(contentEl);
@@ -157,6 +236,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Agregar mensajes del historial
                     data.historial.forEach(msg => {
+                        // Verificar si el mensaje contiene referencia a una imagen
+                        const hasImage = msg.content.includes("[Imagen adjunta]");
+                        // No podemos recuperar la imagen, así que solo mostramos el texto
                         addMessage(msg.content, msg.role);
                     });
                 } else {
@@ -228,6 +310,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 welcomeEl.className = 'chat-greeting';
                 welcomeEl.textContent = '¡Hola! Soy tu asistente virtual de Spa en Ruedas. ¿En qué puedo ayudarte hoy?';
                 chatMessages.appendChild(welcomeEl);
+                
+                // Limpiar imagen seleccionada si hay alguna
+                cancelImageSelection();
             }
         })
         .catch(error => {

@@ -1,8 +1,11 @@
-from flask import render_template, request, redirect, url_for, jsonify, flash, session, abort
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify, flash, session, abort
 from functools import wraps
 from app import app
 from models_sql import Usuario, Servicio, Ubicacion, Evento, Reservacion, Pago, Mensaje, db
 from utils_new import format_date, format_time, generate_admin_dashboard_stats
+
+# Crear el blueprint de administración
+admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 from services_sql import (
     authenticate_user, get_all_bookings, update_booking_status,
     create_service, update_service, get_all_services,
@@ -39,7 +42,7 @@ def admin_required(f):
 
 # Rutas de administración
 
-@app.route('/admin/login', methods=['GET', 'POST'])
+@admin_bp.route('/login', methods=['GET', 'POST'])
 def admin_login():
     """Página de inicio de sesión para administradores."""
     if request.method == 'POST':
