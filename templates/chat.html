@@ -1,0 +1,42 @@
+<!-- Botón de chat flotante -->
+<button id="chat-button" class="chat-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 3c5.5 0 10 3.58 10 8s-4.5 8-10 8c-1.24 0-2.43-.18-3.53-.5C5.55 21 2 21 2 21c2.33-2.33 2.7-3.9 2.75-4.5C3.05 15.07 2 13.13 2 11c0-4.42 4.5-8 10-8z"/>
+    </svg>
+</button>
+
+<!-- Widget de chat -->
+<div id="chat-widget" class="chat-widget" style="display: none;">
+    <div id="chat-header" class="chat-header">
+        <div class="chat-title">
+            <svg class="chat-title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.96 9.96 0 01-6.383-2.302l-.244-.209-5.141 1.287a1 1 0 01-1.196-.586l-.051-.144a1 1 0 01.152-1.006l.116-.143 3.037-3.037c-1.228-2.003-1.633-4.216-1.251-6.223C2.2 4.038 6.641 0 12 0zm0 2C7.029 2 3 6.03 3 11a8.96 8.96 0 001.709 5.304c.246.346.292.802.157 1.183l-.06.14-1.206 1.206 2.662-.666a1 1 0 01.808.122l.14.081A7.97 7.97 0 0012 20c4.971 0 9-4.029 9-9s-4.029-9-9-9zm0 3a1 1 0 11-2 0 1 1 0 012 0zm4 0a1 1 0 11-2 0 1 1 0 012 0zm-8 0a1 1 0 11-2 0 1 1 0 012 0z" />
+            </svg>
+            Asistente de Spa en Ruedas
+        </div>
+        <div class="chat-controls">
+            <button id="chat-reset-btn" class="chat-control-btn" title="Reiniciar chat">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z"/>
+                    <path d="M5.463 4.433A9.961 9.961 0 0 1 12 2c5.523 0 10 4.477 10 10 0 2.136-.67 4.116-1.81 5.74L17 12h3A8 8 0 0 0 6.46 6.228l-.997-1.795zm13.074 15.134A9.961 9.961 0 0 1 12 22C6.477 22 2 17.523 2 12c0-2.136.67-4.116 1.81-5.74L7 12H4a8 8 0 0 0 13.54 5.772l.997 1.795z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button id="chat-collapse-btn" class="chat-control-btn" title="Colapsar chat">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z"/>
+                    <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div id="chat-messages" class="chat-messages"></div>
+    <div class="chat-input-container">
+        <input id="chat-input" class="chat-input" type="text" placeholder="Escribe tu mensaje aquí...">
+        <button id="chat-send-btn" class="chat-send-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"/>
+            </svg>
+        </button>
+    </div>
+</div>
