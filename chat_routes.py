@@ -30,17 +30,21 @@ def enviar_mensaje():
         'content': mensaje
     })
     
-    # Intentar obtener una respuesta predefinida primero
+    # Intentar obtener una respuesta predefinida primero (palabras clave importantes)
     respuesta_predefinida = respuestas_predefinidas(mensaje)
     
-    if respuesta_predefinida:
+    # Verificar si es una respuesta predefinida para palabras clave importantes
+    palabras_clave_importantes = ["hora", "precio", "costo", "reserva", "ubica", "canc", "cita", "telef", "contac"]
+    es_pregunta_clave = any(palabra in mensaje.lower() for palabra in palabras_clave_importantes)
+    
+    if respuesta_predefinida and es_pregunta_clave:
         respuesta = {
             'success': True,
             'mensaje': respuesta_predefinida,
             'source': 'predefinida'
         }
     else:
-        # Generar respuesta con IA
+        # Generar respuesta con IA para preguntas más complejas
         respuesta = generar_respuesta_chat(mensaje, session.get('chat_history', [])[:-1])
     
     # Si la respuesta fue exitosa, añadir al historial

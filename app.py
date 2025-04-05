@@ -26,6 +26,9 @@ CORS(app)
 
 # Configurar CSRF Protection
 csrf = CSRFProtect(app)
+csrf.exempt('/chat/enviar')
+csrf.exempt('/chat/historial')
+csrf.exempt('/chat/reiniciar')
 
 # Inicializar extensiones
 db.init_app(app)
