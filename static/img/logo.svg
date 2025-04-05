@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50">
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
   <style>
-    .logo-text { fill: #66b2b2; font-family: 'Playfair Display', serif; font-weight: 700; }
     .logo-icon { fill: #66b2b2; }
     .icon-accent { fill: #d4a373; }
   </style>
@@ -8,8 +7,5 @@
     <circle cx="25" cy="25" r="20" class="logo-icon" />
     <circle cx="25" cy="25" r="15" fill="white" />
     <path d="M25,10 C17.5,10 10,17.5 10,25 C10,32.5 17.5,40 25,40 L25,10 Z" class="icon-accent" opacity="0.7" />
-    <g transform="translate(60, 30)">
-      <text class="logo-text" font-size="24">Spa en Ruedas</text>
-    </g>
   </g>
 </svg>
