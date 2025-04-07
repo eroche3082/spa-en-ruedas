@@ -287,7 +287,7 @@ def calendario():
     """Render página de calendario de eventos."""
     eventos = get_all_events()
     ubicaciones = get_all_locations()
-    return render_template('calendario.html', eventos=eventos, ubicaciones=ubicaciones)
+    return render_template('calendar.html', events=eventos, locations=ubicaciones)
 
 @app.route('/nosotros')
 def nosotros():
