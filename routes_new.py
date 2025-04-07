@@ -45,9 +45,9 @@ def detalle_servicio(service_id):
     ][:3]  # Limitar a 3 relacionados
     
     return render_template(
-        'servicio_detalle.html', 
+        'detalle_servicio.html', 
         servicio=servicio, 
-        relacionados=servicios_relacionados
+        servicios_relacionados=servicios_relacionados
     )
 
 @app.route('/reservar', methods=['GET', 'POST'])

@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ servicio.nombre }} - Spa en Ruedas{% endblock %}
+
+{% block content %}
+<!-- Service Detail Hero -->
+<section class="page-header bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold">{{ servicio.nombre }}</h1>
+                <p class="lead">Detalles y beneficios de este servicio</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Detail Content -->
+<section class="service-detail py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="service-detail-image">
+                    <img src="{{ url_for('static', filename='img/services/' + servicio.imagen) if servicio.imagen else url_for('static', filename='img/service-default.jpg') }}" alt="{{ servicio.nombre }}" class="img-fluid rounded mb-4">
+                    
+                    <!-- Additional Images -->
+                    <div class="service-gallery row g-2">
+                        <div class="col-4">
+                            <img src="{{ url_for('static', filename='img/photos/services/' + servicio.imagen.split('.')[0] + '.jpg') }}" alt="{{ servicio.nombre }} - Imagen 1" class="img-fluid rounded">
+                        </div>
+                        <div class="col-4">
+                            <img src="{{ url_for('static', filename='img/photos/services/' + servicio.imagen.split('.')[0] + '.jpg') }}" alt="{{ servicio.nombre }} - Imagen 2" class="img-fluid rounded">
+                        </div>
+                        <div class="col-4">
+                            <img src="{{ url_for('static', filename='img/photos/services/' + servicio.imagen.split('.')[0] + '.jpg') }}" alt="{{ servicio.nombre }} - Imagen 3" class="img-fluid rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="service-detail-info">
+                    <div class="service-meta d-flex justify-content-between mb-4">
+                        <div class="price">
+                            <h3 class="mb-0 text-primary">${{ "%.2f"|format(servicio.precio) }}</h3>
+                            {% if servicio.nombre == 'Silla de masajes' %}
+                            <small class="text-muted">($1 por minuto, máximo 30 minutos)</small>
+                            {% endif %}
+                        </div>
+                        <div class="duration">
+                            <p class="mb-0"><i class="far fa-clock me-2"></i>{{ servicio.duracion }} minutos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-description mb-4">
+                        <h4>Descripción</h4>
+                        <p>{{ servicio.descripcion }}</p>
+                    </div>
+                    
+                    <div class="service-benefits mb-4">
+                        <h4>Beneficios</h4>
+                        <ul class="list-group list-group-flush">
+                            {% if servicio.nombre == 'Masaje terapéutico' %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Alivia el dolor muscular crónico</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Reduce el estrés y la ansiedad</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Mejora la circulación sanguínea</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Promueve una mejor calidad de sueño</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Aumenta la flexibilidad y rango de movimiento</li>
+                            {% elif servicio.nombre == 'Masaje profundo' %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Trabaja las capas profundas del tejido muscular</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Alivia el dolor crónico y la tensión muscular</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Rompe adhesiones y tejido cicatricial</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Mejora la postura y alineación corporal</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Rehabilitación de lesiones musculares</li>
+                            {% elif servicio.nombre == 'Masaje deportivo' %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Previene lesiones deportivas</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Reduce el tiempo de recuperación muscular</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Aumenta el rendimiento deportivo</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Alivia la fatiga muscular</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Mejora la flexibilidad y el rango de movimiento</li>
+                            {% elif servicio.nombre == 'Ventosaterapia' %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Desintoxica el cuerpo</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Reduce la inflamación</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Alivia el dolor de espalda y cuello</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Mejora la circulación sanguínea</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Relaja el tejido conectivo</li>
+                            {% elif servicio.nombre == 'Reflexología' %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Reduce el estrés y promueve la relajación</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Mejora la circulación</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Alivia dolor en diferentes partes del cuerpo</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Equilibra el sistema nervioso</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Promueve el bienestar general</li>
+                            {% elif servicio.nombre == 'Drenaje linfático facial' %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Reduce la hinchazón facial</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Mejora el aspecto de la piel</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Desintoxica el rostro</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Reduce ojeras y bolsas bajo los ojos</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Promueve la regeneración celular</li>
+                            {% elif servicio.nombre == 'Terapia iónica' %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Elimina toxinas del cuerpo</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Mejora el metabolismo</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Equilibra el pH corporal</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Fortalece el sistema inmunológico</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Aumenta los niveles de energía</li>
+                            {% elif servicio.nombre == 'Silla de masajes' %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Alivio rápido del estrés</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Ideal para descansos breves</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Mejora la circulación en cuello y hombros</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Reduce la tensión por trabajo en computadora</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>No requiere desvestirse</li>
+                            {% else %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Promueve el bienestar general</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Reduce el estrés y la ansiedad</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Mejora la circulación</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Alivia dolores y molestias</li>
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Aumenta la sensación de bienestar</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    
+                    <div class="service-actions mt-4">
+                        <a href="{{ url_for('reservar') }}?service={{ servicio.id }}" class="btn btn-primary btn-lg">Reservar Ahora</a>
+                        <a href="{{ url_for('servicios') }}" class="btn btn-outline-secondary ms-2">Ver Todos los Servicios</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Services -->
+<section class="related-services py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h2 class="h3 fw-bold">Servicios Relacionados</h2>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for related in servicios_relacionados %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="{{ url_for('static', filename='img/services/' + related.imagen) if related.imagen else url_for('static', filename='img/service-default.jpg') }}" alt="{{ related.nombre }}" class="img-fluid">
+                    </div>
+                    <div class="service-content">
+                        <h3>{{ related.nombre }}</h3>
+                        <p class="service-price">${{ "%.2f"|format(related.precio) }}</p>
+                        <p class="service-duration"><i class="far fa-clock me-2"></i>{{ related.duracion }} minutos</p>
+                        <div class="service-actions">
+                            <a href="{{ url_for('detalle_servicio', service_id=related.id) }}" class="btn btn-outline-primary">Ver Detalles</a>
+                            <a href="{{ url_for('reservar') }}?service={{ related.id }}" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="cta-content text-center">
+            <h2 class="h1 fw-bold mb-4">¿Listo para experimentar {{ servicio.nombre }}?</h2>
+            <p class="lead mb-4">Haz tu reservación ahora y disfruta de este increíble servicio.</p>
+            <a href="{{ url_for('reservar') }}?service={{ servicio.id }}" class="btn btn-primary btn-lg">Reservar Ahora</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Image gallery functionality
+        const galleryImages = document.querySelectorAll('.service-gallery img');
+        const mainImage = document.querySelector('.service-detail-image img:first-child');
+        
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                const newSrc = this.getAttribute('src');
+                mainImage.setAttribute('src', newSrc);
+            });
+        });
+    });
+</script>
+{% endblock %}

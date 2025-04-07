@@ -1,0 +1,45 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="200" height="200" fill="#f5f5f5" rx="10" ry="10"/>
+  
+  <!-- Silla de masaje -->
+  <rect x="70" y="100" width="60" height="15" fill="#8a6e52" rx="3" ry="3"/>
+  <rect x="75" y="115" width="50" height="60" fill="#a57c52" rx="3" ry="3"/>
+  
+  <!-- Estructura de la silla -->
+  <rect x="75" y="175" width="8" height="15" fill="#555"/>
+  <rect x="117" y="175" width="8" height="15" fill="#555"/>
+  <rect x="60" y="130" width="80" height="7" fill="#888" rx="2" ry="2"/>
+  <rect x="70" y="95" width="8" height="35" fill="#555"/>
+  <rect x="122" y="95" width="8" height="35" fill="#555"/>
+  
+  <!-- Reposabrazos -->
+  <rect x="55" y="110" width="15" height="30" fill="#a57c52" rx="3" ry="3"/>
+  <rect x="130" y="110" width="15" height="30" fill="#a57c52" rx="3" ry="3"/>
+  
+  <!-- Respaldo facial -->
+  <rect x="70" y="70" width="60" height="10" fill="#8a6e52" rx="2" ry="2"/>
+  <rect x="95" y="55" width="10" height="15" fill="#555"/>
+  <ellipse cx="100" cy="50" rx="15" ry="10" fill="#a57c52"/>
+  <ellipse cx="100" cy="50" rx="8" ry="5" fill="#f5f5f5"/>
+  
+  <!-- Persona recibiendo masaje -->
+  <ellipse cx="100" cy="90" rx="15" ry="15" fill="#f3d8b4"/>
+  <path d="M100,100 C85,110 85,130 85,140" stroke="#f3d8b4" stroke-width="10" fill="none"/>
+  <path d="M100,100 C115,110 115,130 115,140" stroke="#f3d8b4" stroke-width="10" fill="none"/>
+  
+  <!-- Manos del terapeuta -->
+  <ellipse cx="80" cy="85" rx="8" ry="6" fill="#f9c9b6" transform="rotate(-15, 80, 85)"/>
+  <ellipse cx="120" cy="85" rx="8" ry="6" fill="#f9c9b6" transform="rotate(15, 120, 85)"/>
+  
+  <!-- Reloj de tiempo -->
+  <circle cx="40" cy="40" r="15" fill="#fff" stroke="#333" stroke-width="1"/>
+  <line x1="40" y1="40" x2="40" y2="30" stroke="#333" stroke-width="1"/>
+  <line x1="40" y1="40" x2="48" y2="40" stroke="#333" stroke-width="2"/>
+  <text x="40" y="60" font-family="Arial" font-size="9" text-anchor="middle" fill="#333">$1/min</text>
+  
+  <!-- Elementos decorativos -->
+  <circle cx="155" cy="40" r="8" fill="#85c4d9" opacity="0.7"/>
+  <circle cx="170" cy="50" r="6" fill="#85c4d9" opacity="0.7"/>
+  <circle cx="160" cy="65" r="10" fill="#85c4d9" opacity="0.7"/>
+</svg>
