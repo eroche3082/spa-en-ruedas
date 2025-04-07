@@ -1,0 +1,381 @@
+{% extends 'base.html' %}
+
+{% block title %}Sobre Nosotros - Spa en Ruedas{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1>Sobre Nosotros</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Sobre Nosotros</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section py-5">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="about-img-container">
+                    <!-- SVG placeholder instead of actual image -->
+                    <svg width="100%" height="400" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="#8e44ad" opacity="0.7"/>
+                        <text x="50%" y="50%" font-family="Arial" font-size="24" fill="white" text-anchor="middle">Spa en Ruedas</text>
+                        <text x="50%" y="60%" font-family="Arial" font-size="16" fill="white" text-anchor="middle">Nuestro Equipo</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-content">
+                    <h2 class="section-title mb-4">Nuestra Historia</h2>
+                    <p class="mb-4">Spa en Ruedas nació en 2020 como una respuesta innovadora a las necesidades cambiantes del mercado del bienestar y el turismo en Puerto Rico. Fundada por un grupo de terapeutas certificados con amplia experiencia en la industria del spa, nuestra empresa buscaba revolucionar la forma en que las personas disfrutan de los servicios de spa.</p>
+                    <p class="mb-4">La idea surgió al notar que muchos turistas que visitaban la isla, especialmente aquellos que llegaban en cruceros, tenían tiempo limitado para explorar y no podían desplazarse hasta los spas tradicionales. Además, observamos una oportunidad para llevar estos servicios a eventos locales y festividades donde las personas buscan momentos de relajación.</p>
+                    <p>Así, adaptamos vagones especialmente diseñados para proporcionar una experiencia de spa completa, con todas las comodidades y características de un establecimiento fijo, pero con la ventaja de la movilidad. Hoy en día, Spa en Ruedas se ha convertido en un referente de innovación en la industria del bienestar en Puerto Rico.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mission & Vision Section -->
+        <div class="row py-4">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="card mission-card h-100">
+                    <div class="card-body p-4">
+                        <div class="mission-icon mb-3">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="card-title mb-3">Misión</h3>
+                        <p class="card-text">Nuestra misión es proporcionar servicios de spa de primera calidad en cualquier ubicación de Puerto Rico, llevando bienestar y relajación directamente a nuestros clientes. Nos comprometemos a ofrecer tratamientos personalizados con los más altos estándares de calidad y servicio, contribuyendo al bienestar físico y mental de nuestros clientes y al crecimiento del turismo de bienestar en la isla.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card vision-card h-100">
+                    <div class="card-body p-4">
+                        <div class="vision-icon mb-3">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3 class="card-title mb-3">Visión</h3>
+                        <p class="card-text">Aspiramos a ser reconocidos como el proveedor líder de servicios móviles de spa en el Caribe, expandiendo nuestra presencia a todas las regiones de Puerto Rico y, eventualmente, a otras islas del Caribe. Visualizamos un futuro donde Spa en Ruedas sea sinónimo de excelencia en el servicio, innovación en el bienestar y un componente esencial de la experiencia turística de la región.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Values Section -->
+        <div class="row py-4">
+            <div class="col-12 text-center mb-4">
+                <h2 class="section-title">Nuestros Valores</h2>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="value-card text-center">
+                    <div class="value-icon mb-3">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Pasión por el Servicio</h4>
+                    <p>Nos apasiona lo que hacemos y nos esforzamos por superar las expectativas de nuestros clientes en cada interacción.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="value-card text-center">
+                    <div class="value-icon mb-3">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4>Excelencia</h4>
+                    <p>Buscamos la excelencia en todos los aspectos de nuestro negocio, desde la calidad de nuestros tratamientos hasta la atención al cliente.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="value-card text-center">
+                    <div class="value-icon mb-3">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>Sostenibilidad</h4>
+                    <p>Nos comprometemos a operar de manera sostenible, utilizando productos respetuosos con el medio ambiente y apoyando a proveedores locales.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="value-card text-center">
+                    <div class="value-icon mb-3">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Comunidad</h4>
+                    <p>Valoramos nuestra comunidad local y nos esforzamos por contribuir positivamente a su bienestar y desarrollo económico.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="value-card text-center">
+                    <div class="value-icon mb-3">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Innovación</h4>
+                    <p>Continuamente buscamos formas innovadoras de mejorar nuestros servicios y la experiencia general del cliente.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="value-card text-center">
+                    <div class="value-icon mb-3">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Integridad</h4>
+                    <p>Actuamos con honestidad, transparencia y respeto en todas nuestras relaciones profesionales y comerciales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="benefits-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Beneficios del Proyecto</h2>
+                <p class="text-muted">Spa en Ruedas no solo ofrece servicios de bienestar excepcionales, sino que también genera impactos positivos en distintos ámbitos.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="benefit-card h-100">
+                    <div class="card-body p-4">
+                        <div class="benefit-icon mb-3">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h4 class="card-title mb-3">Impacto Económico</h4>
+                        <ul class="benefit-list">
+                            <li>Creación de empleo local para terapeutas y personal administrativo</li>
+                            <li>Incremento del gasto turístico en la isla</li>
+                            <li>Apoyo a proveedores locales de productos para spa</li>
+                            <li>Diversificación de la oferta turística de Puerto Rico</li>
+                            <li>Oportunidades para colaboraciones con hoteles y líneas de cruceros</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="benefit-card h-100">
+                    <div class="card-body p-4">
+                        <div class="benefit-icon mb-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="card-title mb-3">Impacto Social</h4>
+                        <ul class="benefit-list">
+                            <li>Promoción del bienestar y la salud en la comunidad local</li>
+                            <li>Acceso a servicios de spa en áreas que carecen de instalaciones fijas</li>
+                            <li>Programas especiales para comunidades desatendidas</li>
+                            <li>Educación sobre prácticas de bienestar y autocuidado</li>
+                            <li>Participación en eventos comunitarios y ferias de salud</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="benefit-card h-100">
+                    <div class="card-body p-4">
+                        <div class="benefit-icon mb-3">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <h4 class="card-title mb-3">Impacto Turístico</h4>
+                        <ul class="benefit-list">
+                            <li>Enriquecimiento de la experiencia de los turistas de cruceros</li>
+                            <li>Servicio diferenciador que atrae a viajeros interesados en bienestar</li>
+                            <li>Promoción de Puerto Rico como destino de turismo de bienestar</li>
+                            <li>Presencia en eventos turísticos importantes de la isla</li>
+                            <li>Contribución a la imagen de Puerto Rico como destino innovador</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Nuestro Equipo</h2>
+                <p class="text-muted">Contamos con un equipo de profesionales certificados y apasionados por el bienestar.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="team-card text-center">
+                    <div class="team-img mb-3">
+                        <!-- SVG placeholder instead of actual image -->
+                        <svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="75" cy="75" r="75" fill="#8e44ad" opacity="0.7"/>
+                            <text x="75" y="85" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Foto</text>
+                        </svg>
+                    </div>
+                    <h4>María González</h4>
+                    <p class="team-position text-muted">Fundadora y Directora</p>
+                    <p class="team-bio">Terapeuta certificada con más de 15 años de experiencia en la industria del bienestar.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="team-card text-center">
+                    <div class="team-img mb-3">
+                        <!-- SVG placeholder instead of actual image -->
+                        <svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="75" cy="75" r="75" fill="#8e44ad" opacity="0.7"/>
+                            <text x="75" y="85" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Foto</text>
+                        </svg>
+                    </div>
+                    <h4>Carlos Méndez</h4>
+                    <p class="team-position text-muted">Director de Operaciones</p>
+                    <p class="team-bio">Especialista en logística con experiencia en gestión de spas y centros de bienestar.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="team-card text-center">
+                    <div class="team-img mb-3">
+                        <!-- SVG placeholder instead of actual image -->
+                        <svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="75" cy="75" r="75" fill="#8e44ad" opacity="0.7"/>
+                            <text x="75" y="85" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Foto</text>
+                        </svg>
+                    </div>
+                    <h4>Laura Pérez</h4>
+                    <p class="team-position text-muted">Terapeuta Principal</p>
+                    <p class="team-bio">Especialista en masaje terapéutico y técnicas de relajación avanzadas.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="team-card text-center">
+                    <div class="team-img mb-3">
+                        <!-- SVG placeholder instead of actual image -->
+                        <svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="75" cy="75" r="75" fill="#8e44ad" opacity="0.7"/>
+                            <text x="75" y="85" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Foto</text>
+                        </svg>
+                    </div>
+                    <h4>Roberto Vega</h4>
+                    <p class="team-position text-muted">Esteticista</p>
+                    <p class="team-bio">Experto en tratamientos faciales y corporales con certificaciones internacionales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Join Us Section -->
+<section class="join-us-section py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title mb-4">Únete a Nuestro Equipo</h2>
+                <p class="mb-4">En Spa en Ruedas, siempre estamos buscando profesionales talentosos y apasionados que compartan nuestra misión de proporcionar experiencias de bienestar excepcionales. Si eres terapeuta certificado, esteticista o tienes experiencia en la industria del spa, nos encantaría saber de ti.</p>
+                <h5 class="mb-3">Beneficios de trabajar con nosotros:</h5>
+                <ul class="mb-4">
+                    <li>Ambiente de trabajo flexible y dinámico</li>
+                    <li>Oportunidades de crecimiento profesional</li>
+                    <li>Capacitación continua y desarrollo de habilidades</li>
+                    <li>Compensación competitiva basada en experiencia y habilidades</li>
+                    <li>Ser parte de un concepto innovador en la industria del bienestar</li>
+                </ul>
+                <a href="{{ url_for('contacto') }}" class="btn btn-primary btn-lg">Contáctanos</a>
+            </div>
+            <div class="col-lg-6">
+                <!-- SVG placeholder instead of actual image -->
+                <svg width="100%" height="350" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100%" height="100%" fill="#8e44ad" opacity="0.7"/>
+                    <text x="50%" y="50%" font-family="Arial" font-size="24" fill="white" text-anchor="middle">Únete a Nuestro Equipo</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+                <p class="text-muted">Escucha las experiencias de quienes ya han disfrutado de nuestros servicios.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="card-body p-4">
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text mb-4">"Una experiencia increíble. El servicio llegó puntualmente a mi hotel y el masaje fue uno de los mejores que he recibido. Altamente recomendado para cualquiera que visite Puerto Rico."</p>
+                        <div class="testimonial-author">
+                            <h5 class="mb-1">Ana Rodríguez</h5>
+                            <p class="text-muted">Turista de España</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="card-body p-4">
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text mb-4">"Contratamos Spa en Ruedas para un retiro corporativo y fue todo un éxito. Nuestros empleados disfrutaron de los tratamientos y el equipo fue muy profesional y organizado."</p>
+                        <div class="testimonial-author">
+                            <h5 class="mb-1">Miguel Torres</h5>
+                            <p class="text-muted">Gerente de Recursos Humanos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="card-body p-4">
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star-half-alt text-warning"></i>
+                        </div>
+                        <p class="testimonial-text mb-4">"Lo que más me gustó fue la comodidad de recibir un tratamiento profesional sin tener que desplazarme. El ambiente que crearon en mi propia casa fue relajante y el servicio de primera categoría."</p>
+                        <div class="testimonial-author">
+                            <h5 class="mb-1">Carmen Lugo</h5>
+                            <p class="text-muted">Cliente local</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="cta-content text-center p-5">
+                    <h2 class="text-white mb-4">Experiencias de Bienestar a Tu Alcance</h2>
+                    <p class="text-white mb-4">Descubre cómo Spa en Ruedas puede transformar tu día con servicios profesionales de spa donde quiera que estés en Puerto Rico.</p>
+                    <a href="{{ url_for('reservar') }}" class="btn btn-light btn-lg">Reserva Ahora</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

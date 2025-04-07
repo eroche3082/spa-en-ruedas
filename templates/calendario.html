@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %}Calendario de Eventos - Spa en Ruedas{% endblock %}
+
+{% block extra_css %}
+<!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1>Calendario de Eventos</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Calendario</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Calendar Section -->
+<section class="calendar-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Encuentra a Spa en Ruedas</h2>
+                <p class="text-muted">Consulta nuestro calendario para saber dónde estaremos próximamente y reserva tu experiencia de bienestar.</p>
+            </div>
+        </div>
+        
+        <!-- Calendar Display -->
+        <div class="row mb-5">
+            <div class="col-lg-12">
+                <div class="card calendar-card">
+                    <div class="card-body">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Upcoming Events List -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="mb-4">Próximos Eventos</h3>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Evento</th>
+                                <th>Ubicación</th>
+                                <th>Descripción</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for event in eventos %}
+                            <tr>
+                                <td>{{ event.date }}</td>
+                                <td>{{ event.title }}</td>
+                                <td>
+                                    {% for location in ubicaciones %}
+                                        {% if location.id == event.location_id %}
+                                            {{ location.name }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ event.description }}</td>
+                                <td>
+                                    <a href="{{ url_for('reservar') }}?event={{ event.id }}" class="btn btn-sm btn-primary">Reservar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Locations Section -->
+<section class="locations-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Nuestras Ubicaciones</h2>
+                <p class="text-muted">Estas son las localidades donde podrás encontrar Spa en Ruedas regularmente.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for location in ubicaciones %}
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card location-card h-100">
+                    <div class="location-img">
+                        <!-- SVG placeholder instead of actual image -->
+                        <svg width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100%" height="100%" fill="#8e44ad" opacity="0.7"/>
+                            <text x="50%" y="50%" font-family="Arial" font-size="16" fill="white" text-anchor="middle">{{ location.name }}</text>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ location.name }}</h4>
+                        <p class="card-text">{{ location.description }}</p>
+                        <p class="location-address mb-3"><i class="fas fa-map-marker-alt me-2 text-primary"></i> {{ location.address }}</p>
+                        <a href="{{ url_for('reservar') }}?location={{ location.id }}" class="btn btn-outline-primary btn-sm">Reservar en esta ubicación</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="cta-content text-center p-5">
+                    <h2 class="text-white mb-4">¿Buscas un evento privado?</h2>
+                    <p class="text-white mb-4">Spa en Ruedas también está disponible para eventos corporativos, bodas y celebraciones privadas. Contáctanos para más información.</p>
+                    <a href="{{ url_for('contacto') }}" class="btn btn-light btn-lg">Consultar Disponibilidad</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Event Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">Detalles del Evento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="eventDetails">
+                    <h4 id="eventTitle"></h4>
+                    <p id="eventDate" class="mb-2"></p>
+                    <p id="eventLocation" class="mb-2"></p>
+                    <p id="eventDescription" class="mb-4"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <a href="#" id="eventBookingLink" class="btn btn-primary">Reservar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+<script>
+    // Pass events data to the calendar.js script
+    const eventsData = {{ eventos|tojson }};
+    const locationsData = {{ ubicaciones|tojson }};
+</script>
+{% endblock %}
