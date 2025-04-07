@@ -1,0 +1,59 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="200" height="200" fill="#f5f5f5" rx="10" ry="10"/>
+  
+  <!-- Carpa de evento -->
+  <path d="M30,120 L50,70 L150,70 L170,120 Z" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <path d="M30,120 L170,120 L170,140 L30,140 Z" fill="#f1f1f1" stroke="#ddd" stroke-width="1"/>
+  
+  <!-- Telas decorativas de la carpa -->
+  <path d="M50,70 L50,120" stroke="#e91e63" stroke-width="5" stroke-dasharray="5 3" opacity="0.7"/>
+  <path d="M100,70 L100,120" stroke="#3f51b5" stroke-width="5" stroke-dasharray="5 3" opacity="0.7"/>
+  <path d="M150,70 L150,120" stroke="#e91e63" stroke-width="5" stroke-dasharray="5 3" opacity="0.7"/>
+  
+  <!-- Banderas decorativas -->
+  <path d="M40,70 L30,60 L40,50 L30,40" stroke="#ff9800" stroke-width="1" fill="none"/>
+  <path d="M30,60 L40,60" stroke="#ff9800" stroke-width="1" fill="none"/>
+  <path d="M30,40 L40,40" stroke="#ff9800" stroke-width="1" fill="none"/>
+  
+  <path d="M160,70 L170,60 L160,50 L170,40" stroke="#ff9800" stroke-width="1" fill="none"/>
+  <path d="M160,60 L170,60" stroke="#ff9800" stroke-width="1" fill="none"/>
+  <path d="M160,40 L170,40" stroke="#ff9800" stroke-width="1" fill="none"/>
+  
+  <!-- Mesas de masaje bajo la carpa -->
+  <rect x="60" y="100" width="30" height="10" fill="#81c784" rx="2" ry="2"/>
+  <rect x="65" y="110" width="5" height="15" fill="#66bb6a"/>
+  <rect x="80" y="110" width="5" height="15" fill="#66bb6a"/>
+  
+  <rect x="110" y="100" width="30" height="10" fill="#81c784" rx="2" ry="2"/>
+  <rect x="115" y="110" width="5" height="15" fill="#66bb6a"/>
+  <rect x="130" y="110" width="5" height="15" fill="#66bb6a"/>
+  
+  <!-- Personas -->
+  <circle cx="75" cy="90" r="8" fill="#ffb74d"/>
+  <rect x="72" y="98" width="6" height="10" fill="#ffca8b"/>
+  
+  <circle cx="125" cy="90" r="8" fill="#ffb74d"/>
+  <rect x="122" y="98" width="6" height="10" fill="#ffca8b"/>
+  
+  <!-- Terapeutas -->
+  <circle cx="60" cy="90" r="6" fill="#ce93d8"/>
+  <rect x="58" y="96" width="4" height="8" fill="#e1bee7"/>
+  
+  <circle cx="110" cy="90" r="6" fill="#ce93d8"/>
+  <rect x="108" y="96" width="4" height="8" fill="#e1bee7"/>
+  
+  <!-- Elementos decorativos -->
+  <circle cx="40" cy="130" r="5" fill="#8bc34a"/>
+  <path d="M40,130 C35,125 30,128 28,123" stroke="#7cb342" stroke-width="1" fill="none"/>
+  <path d="M40,130 C45,125 50,128 52,123" stroke="#7cb342" stroke-width="1" fill="none"/>
+  
+  <circle cx="160" cy="130" r="5" fill="#8bc34a"/>
+  <path d="M160,130 C155,125 150,128 148,123" stroke="#7cb342" stroke-width="1" fill="none"/>
+  <path d="M160,130 C165,125 170,128 172,123" stroke="#7cb342" stroke-width="1" fill="none"/>
+  
+  <!-- Letreros -->
+  <rect x="85" y="50" width="30" height="15" rx="3" ry="3" fill="#90caf9"/>
+  <line x1="90" y1="57" x2="110" y2="57" stroke="#fff" stroke-width="2"/>
+  <line x1="90" y1="62" x2="110" y2="62" stroke="#fff" stroke-width="1"/>
+</svg>

@@ -1,0 +1,36 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="200" height="200" fill="#f9f9f9" rx="10" ry="10"/>
+  
+  <!-- Espalda -->
+  <ellipse cx="100" cy="100" rx="60" ry="40" fill="#f3d8b4"/>
+  
+  <!-- Copas de ventosas -->
+  <circle cx="70" cy="80" r="12" fill="none" stroke="#853c43" stroke-width="2"/>
+  <circle cx="70" cy="80" r="10" fill="#f9f9f9" opacity="0.7"/>
+  
+  <circle cx="100" cy="75" r="12" fill="none" stroke="#853c43" stroke-width="2"/>
+  <circle cx="100" cy="75" r="10" fill="#f9f9f9" opacity="0.7"/>
+  
+  <circle cx="130" cy="80" r="12" fill="none" stroke="#853c43" stroke-width="2"/>
+  <circle cx="130" cy="80" r="10" fill="#f9f9f9" opacity="0.7"/>
+  
+  <circle cx="80" cy="110" r="12" fill="none" stroke="#853c43" stroke-width="2"/>
+  <circle cx="80" cy="110" r="10" fill="#f9f9f9" opacity="0.7"/>
+  
+  <circle cx="120" cy="110" r="12" fill="none" stroke="#853c43" stroke-width="2"/>
+  <circle cx="120" cy="110" r="10" fill="#f9f9f9" opacity="0.7"/>
+  
+  <!-- Marca de succión -->
+  <circle cx="70" cy="80" r="8" fill="#da8a8a" opacity="0.5"/>
+  <circle cx="100" cy="75" r="8" fill="#da8a8a" opacity="0.5"/>
+  <circle cx="130" cy="80" r="8" fill="#da8a8a" opacity="0.5"/>
+  <circle cx="80" cy="110" r="8" fill="#da8a8a" opacity="0.5"/>
+  <circle cx="120" cy="110" r="8" fill="#da8a8a" opacity="0.5"/>
+  
+  <!-- Algunos elementos decorativos -->
+  <circle cx="40" cy="40" r="15" fill="#f9c9c9" opacity="0.2"/>
+  <circle cx="160" cy="40" r="15" fill="#f9c9c9" opacity="0.2"/>
+  <circle cx="40" cy="160" r="15" fill="#f9c9c9" opacity="0.2"/>
+  <circle cx="160" cy="160" r="15" fill="#f9c9c9" opacity="0.2"/>
+</svg>

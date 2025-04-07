@@ -76,7 +76,7 @@
                                 </td>
                                 <td>{{ event.description }}</td>
                                 <td>
-                                    <a href="{{ url_for('booking') }}?event={{ event.id }}" class="btn btn-sm btn-primary">Reservar</a>
+                                    <a href="{{ url_for('reservar') }}?event={{ event.id }}" class="btn btn-sm btn-primary">Reservar</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -113,7 +113,7 @@
                         <h4 class="card-title">{{ location.name }}</h4>
                         <p class="card-text">{{ location.description }}</p>
                         <p class="location-address mb-3"><i class="fas fa-map-marker-alt me-2 text-primary"></i> {{ location.address }}</p>
-                        <a href="{{ url_for('booking') }}?location={{ location.id }}" class="btn btn-outline-primary btn-sm">Reservar en esta ubicación</a>
+                        <a href="{{ \url_for('reservar') }}?location={{ location.id }}" class="btn btn-outline-primary btn-sm">Reservar en esta ubicación</a>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@
                 <div class="cta-content text-center p-5">
                     <h2 class="text-white mb-4">¿Buscas un evento privado?</h2>
                     <p class="text-white mb-4">Spa en Ruedas también está disponible para eventos corporativos, bodas y celebraciones privadas. Contáctanos para más información.</p>
-                    <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg">Consultar Disponibilidad</a>
+                    <a href="{{ url_for('contacto') }}" class="btn btn-light btn-lg">Consultar Disponibilidad</a>
                 </div>
             </div>
         </div>

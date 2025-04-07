@@ -1,0 +1,33 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="200" height="200" fill="#e0f7fa" rx="10" ry="10"/>
+  
+  <!-- Playa y mar -->
+  <rect x="0" y="120" width="200" height="80" fill="#ffeecf"/>
+  <path d="M0,120 C30,110 70,130 100,120 C130,110 170,130 200,120 L200,170 L0,170 Z" fill="#64b5f6"/>
+  
+  <!-- Sol -->
+  <circle cx="160" cy="40" r="20" fill="#ffeb3b"/>
+  
+  <!-- Palmera -->
+  <rect x="40" y="120" width="8" height="40" fill="#8d6e63" transform="rotate(-15, 40, 120)"/>
+  <path d="M40,120 C30,100 20,110 10,100 M40,120 C50,100 45,95 60,90 M40,120 C30,105 25,95 15,85" stroke="#66bb6a" stroke-width="4" fill="none"/>
+  
+  <!-- Gafas de RV -->
+  <rect x="75" y="60" width="50" height="30" rx="10" ry="10" fill="#455a64"/>
+  <rect x="80" y="65" width="40" height="20" rx="5" ry="5" fill="#263238"/>
+  <path d="M75,75 L65,85 C60,90 60,110 65,115 L75,125" stroke="#546e7a" stroke-width="2" fill="none"/>
+  <path d="M125,75 L135,85 C140,90 140,110 135,115 L125,125" stroke="#546e7a" stroke-width="2" fill="none"/>
+  
+  <!-- Usuario con las gafas -->
+  <circle cx="100" cy="45" r="15" fill="#ffccbc"/>
+  <rect x="85" y="60" width="30" height="40" rx="5" ry="5" fill="#90a4ae"/>
+  
+  <!-- Elementos de RV visualizados -->
+  <circle cx="140" cy="100" r="5" fill="#fff" opacity="0.5"/>
+  <circle cx="120" cy="110" r="3" fill="#fff" opacity="0.5"/>
+  <circle cx="130" cy="90" r="4" fill="#fff" opacity="0.5"/>
+  
+  <!-- Línea ondulada para representar olas -->
+  <path d="M20,150 C40,140 60,160 80,150 C100,140 120,160 140,150 C160,140 180,160 200,150" stroke="#fff" stroke-width="1" fill="none"/>
+</svg>

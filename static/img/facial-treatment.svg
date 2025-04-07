@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="200" height="200" fill="#f9f9f9" rx="10" ry="10"/>
+  
+  <!-- Rostro estilizado -->
+  <ellipse cx="100" cy="90" rx="45" ry="55" fill="#f3d8b4"/>
+  <ellipse cx="100" cy="75" rx="47" ry="25" fill="#f3d8b4"/>
+  
+  <!-- Líneas que representan el drenaje linfático -->
+  <path d="M70,70 C80,60 120,60 130,70" stroke="#85c4d9" stroke-width="2" fill="none" stroke-dasharray="2" opacity="0.7"/>
+  <path d="M65,85 C80,75 120,75 135,85" stroke="#85c4d9" stroke-width="2" fill="none" stroke-dasharray="2" opacity="0.7"/>
+  <path d="M65,100 C80,90 120,90 135,100" stroke="#85c4d9" stroke-width="2" fill="none" stroke-dasharray="2" opacity="0.7"/>
+  <path d="M70,115 C85,105 115,105 130,115" stroke="#85c4d9" stroke-width="2" fill="none" stroke-dasharray="2" opacity="0.7"/>
+  
+  <!-- Gotas que representan la eliminación de toxinas -->
+  <circle cx="60" cy="75" r="3" fill="#c2e3f7" opacity="0.9"/>
+  <circle cx="140" cy="75" r="3" fill="#c2e3f7" opacity="0.9"/>
+  <circle cx="55" cy="90" r="4" fill="#c2e3f7" opacity="0.9"/>
+  <circle cx="145" cy="90" r="4" fill="#c2e3f7" opacity="0.9"/>
+  <circle cx="57" cy="105" r="3" fill="#c2e3f7" opacity="0.9"/>
+  <circle cx="143" cy="105" r="3" fill="#c2e3f7" opacity="0.9"/>
+  
+  <!-- Elementos faciales estilizados -->
+  <ellipse cx="85" cy="80" rx="5" ry="3" fill="#543a3a"/>
+  <ellipse cx="115" cy="80" rx="5" ry="3" fill="#543a3a"/>
+  <path d="M95,85 C100,90 105,85 105,85" stroke="#543a3a" stroke-width="1" fill="none"/>
+  <path d="M90,100 C95,105 105,105 110,100" stroke="#bb8e8e" stroke-width="2" fill="none"/>
+  
+  <!-- Manos del terapeuta -->
+  <ellipse cx="50" cy="85" rx="12" ry="8" fill="#f9c9b6" transform="rotate(-15)"/>
+  <ellipse cx="145" cy="85" rx="12" ry="8" fill="#f9c9b6" transform="rotate(15)"/>
+</svg>

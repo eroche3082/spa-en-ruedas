@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <p class="service-price mb-0">${{ service.price }}.00</p>
-                                    <a href="{{ url_for('booking') }}?service={{ service.id }}" class="btn btn-primary">Reservar</a>
+                                    <a href="{{ url_for('reservar') }}?service={{ service.id }}" class="btn btn-primary">Reservar</a>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                                 <li>Aromaterapia</li>
                             </ul>
                         </div>
-                        <a href="{{ url_for('booking') }}" class="btn btn-primary">Reservar Paquete</a>
+                        <a href="{{ url_for('reservar') }}" class="btn btn-primary">Reservar Paquete</a>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                                 <li>Hidratación profunda</li>
                             </ul>
                         </div>
-                        <a href="{{ url_for('booking') }}" class="btn btn-primary">Reservar Paquete</a>
+                        <a href="{{ url_for('reservar') }}" class="btn btn-primary">Reservar Paquete</a>
                     </div>
                 </div>
             </div>
@@ -137,7 +137,7 @@
                                 <li>Champagne y chocolates</li>
                             </ul>
                         </div>
-                        <a href="{{ url_for('booking') }}" class="btn btn-primary">Reservar Paquete</a>
+                        <a href="{{ url_for('reservar') }}" class="btn btn-primary">Reservar Paquete</a>
                     </div>
                 </div>
             </div>
@@ -157,7 +157,7 @@
                     <li><i class="fas fa-check-circle text-primary me-2"></i> Disponibles para cualquier servicio o paquete</li>
                     <li><i class="fas fa-check-circle text-primary me-2"></i> Entrega digital inmediata o física por correo</li>
                 </ul>
-                <a href="{{ url_for('contact') }}" class="btn btn-primary">Consultar Sobre Tarjetas de Regalo</a>
+                <a href="{{ url_for('contacto') }}" class="btn btn-primary">Consultar Sobre Tarjetas de Regalo</a>
             </div>
             <div class="col-lg-6">
                 <div class="gift-card-img">
@@ -181,7 +181,7 @@
                 <div class="cta-content text-center p-5">
                     <h2 class="text-white mb-4">¿Listo para reservar tu experiencia de spa?</h2>
                     <p class="text-white mb-4">Nuestros expertos terapeutas te esperan para brindarte un servicio personalizado de primera calidad.</p>
-                    <a href="{{ url_for('booking') }}" class="btn btn-light btn-lg">Reservar Ahora</a>
+                    <a href="{{ url_for('reservar') }}" class="btn btn-light btn-lg">Reservar Ahora</a>
                 </div>
             </div>
         </div>

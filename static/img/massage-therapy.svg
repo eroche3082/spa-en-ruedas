@@ -1,0 +1,29 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="200" height="200" fill="#f9f9f9" rx="10" ry="10"/>
+  
+  <!-- Mesa de masaje -->
+  <rect x="30" y="110" width="140" height="30" fill="#a0d4cb" rx="5" ry="5"/>
+  <rect x="40" y="140" width="10" height="40" fill="#8abaad"/>
+  <rect x="150" y="140" width="10" height="40" fill="#8abaad"/>
+  
+  <!-- Persona recibiendo masaje -->
+  <ellipse cx="100" cy="105" rx="50" ry="20" fill="#f3d8b4"/>
+  <ellipse cx="60" cy="90" rx="15" ry="15" fill="#f3d8b4"/>
+  
+  <!-- Manos del masajista -->
+  <ellipse cx="85" cy="95" rx="10" ry="8" fill="#f9c9b6" transform="rotate(-15)"/>
+  <ellipse cx="120" cy="100" rx="10" ry="8" fill="#f9c9b6" transform="rotate(15)"/>
+  
+  <!-- Plantas decorativas -->
+  <path d="M20,70 C15,55 25,50 30,60 C35,45 45,55 40,65" fill="#7fbf9e"/>
+  <rect x="25" y="65" width="10" height="20" fill="#a57b55"/>
+  
+  <path d="M170,70 C165,55 175,50 180,60 C185,45 195,55 190,65" fill="#7fbf9e"/>
+  <rect x="175" y="65" width="10" height="20" fill="#a57b55"/>
+  
+  <!-- Gotas de aceite aromático -->
+  <circle cx="55" cy="60" r="3" fill="#d9bf8e"/>
+  <circle cx="65" cy="55" r="2" fill="#d9bf8e"/>
+  <circle cx="60" cy="50" r="4" fill="#d9bf8e"/>
+</svg>

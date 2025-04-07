@@ -1,0 +1,39 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="200" height="200" fill="#f9f9f9" rx="10" ry="10"/>
+  
+  <!-- Botellas de aceites esenciales -->
+  <rect x="40" y="120" width="20" height="40" rx="2" ry="2" fill="#b399c9"/>
+  <rect x="43" y="110" width="14" height="10" rx="2" ry="2" fill="#9679a8"/>
+  <rect x="45" y="105" width="10" height="5" fill="#8e73a0"/>
+  
+  <rect x="70" y="130" width="20" height="30" rx="2" ry="2" fill="#9ed693"/>
+  <rect x="73" y="120" width="14" height="10" rx="2" ry="2" fill="#7eb770"/>
+  <rect x="75" y="115" width="10" height="5" fill="#6fa964"/>
+  
+  <rect x="100" y="125" width="20" height="35" rx="2" ry="2" fill="#f3d477"/>
+  <rect x="103" y="115" width="14" height="10" rx="2" ry="2" fill="#e6c043"/>
+  <rect x="105" y="110" width="10" height="5" fill="#d9b13b"/>
+  
+  <rect x="130" y="115" width="20" height="45" rx="2" ry="2" fill="#f3a683"/>
+  <rect x="133" y="105" width="14" height="10" rx="2" ry="2" fill="#e6896a"/>
+  <rect x="135" y="100" width="10" height="5" fill="#d9785d"/>
+  
+  <!-- Espirales de aroma -->
+  <path d="M50,80 C55,70 65,75 60,65 C55,55 65,50 70,60" stroke="#c7a1dd" stroke-width="1.5" fill="none"/>
+  <path d="M80,90 C85,80 95,85 90,75 C85,65 95,60 100,70" stroke="#b1e6a7" stroke-width="1.5" fill="none"/>
+  <path d="M110,75 C115,65 125,70 120,60 C115,50 125,45 130,55" stroke="#f7e68f" stroke-width="1.5" fill="none"/>
+  <path d="M140,85 C145,75 155,80 150,70 C145,60 155,55 160,65" stroke="#f7c4a7" stroke-width="1.5" fill="none"/>
+  
+  <!-- Planta de lavanda -->
+  <path d="M50,50 C40,40 30,35 25,45 C20,55 30,60 40,55" fill="#b399c9"/>
+  <line x1="35" y1="50" x2="35" y2="70" stroke="#6d8c53" stroke-width="2"/>
+  
+  <!-- Hojas de menta -->
+  <path d="M90,40 C80,35 75,25 85,20 C95,15 100,25 95,35" fill="#9ed693"/>
+  <line x1="90" y1="30" x2="90" y2="50" stroke="#6d8c53" stroke-width="2"/>
+  
+  <!-- Flor de Ylang-ylang -->
+  <path d="M130,45 C120,40 115,30 125,25 C135,20 140,30 135,40" fill="#f3d477"/>
+  <line x1="130" y1="35" x2="130" y2="55" stroke="#6d8c53" stroke-width="2"/>
+</svg>
