@@ -5,7 +5,7 @@ import io
 import base64
 
 # Configurar la API de Google Gemini
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyBtWYAuLrchjOSjEpaKAPWhpOh4SaA3QhA")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 try:
     genai.configure(api_key=GEMINI_API_KEY)

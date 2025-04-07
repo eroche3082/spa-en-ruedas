@@ -1,0 +1,60 @@
+{
+  "command": "initialize_platform_for_migration",
+  "objective": "Use this Replit instance to fully structure, configure and optimize the entire web application before migration to Firebase. This includes setting up the admin panel, UI components, backend logic, APIs, and AI chatbot integration using Gemini and/or ChatGPT.",
+  "phases": [
+    {
+      "phase": "UI/UX Design Finalization",
+      "actions": [
+        "Redesign homepage layout with modular UI components",
+        "Create floating chatbot button on bottom right with full screen expansion",
+        "Include chatbot tabs: Language Switcher, Audio, QR Scanner, Camera, AR, Portfolio Upload",
+        "Implement sidebar or navbar logic with routing between Dashboard, Chat, Trips, Explore, Budget, Passport, Settings"
+      ]
+    },
+    {
+      "phase": "Admin Panel Setup",
+      "actions": [
+        "Create admin dashboard with tabs: System Logs, User Management, App Health, AI Monitor, Deployment Logs, API Keys",
+        "Allow live toggles for Gemini/OpenAI switching",
+        "Add form to create new sub-apps or bots with minimal config",
+        "Enable backend script execution with status feedback"
+      ]
+    },
+    {
+      "phase": "AI Integration & Logic",
+      "actions": [
+        "Connect Gemini 1.5 Flash for core assistant tasks",
+        "Fallback to GPT-4 via OpenAI if Gemini fails",
+        "Allow AI to read/write/update UI components (with permissions)",
+        "Allow AI to fetch, summarize and suggest code edits from backend"
+      ]
+    },
+    {
+      "phase": "Backend/API Foundation",
+      "actions": [
+        "Create APIs for Flights (Amadeus or Skyscanner), Weather, Currency, Stripe, Firebase Auth",
+        "Use Express + Node for all API routes",
+        "Link PostgreSQL or Firebase DB schema",
+        "Configure secrets or API keys securely with environment variables"
+      ]
+    },
+    {
+      "phase": "Migration Preparation",
+      "actions": [
+        "Add Firebase-specific config files: firebase.json, .firebaserc, hosting config",
+        "Prepare folder structure for Firebase deploy",
+        "Package all assets, routes, functions, configs and UI into clean folders",
+        "Run full system diagnostic and export migration-ready version"
+      ]
+    }
+  ],
+  "technologies": {
+    "frontend": "React + Tailwind + Vite",
+    "backend": "Node.js + Express",
+    "AI": "Gemini 1.5 Flash, GPT-4",
+    "database": "PostgreSQL or Firestore (select based on current project)",
+    "hosting_target": "Firebase Hosting",
+    "admin_panel": "Custom React UI with Gemini integrations"
+  },
+  "output_goal": "Have a fully structured and functional application inside Replit, with AI-assisted chatbot UI, admin dashboard, backend APIs, working features (chat, explore, passport, budget), and a ready-to-export Firebase project."
+}

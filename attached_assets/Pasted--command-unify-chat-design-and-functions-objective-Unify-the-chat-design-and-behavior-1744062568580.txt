@@ -1,0 +1,48 @@
+{
+  "command": "unify_chat_design_and_functions",
+  "objective": "Unify the chat design and behavior across all platforms (Aurora, Jet AI, CryptoBot, Sofia, LifePath, etc.) to follow the same visual structure, interactive components, and responsive features.",
+  "ui_design": {
+    "floating_icon": {
+      "position": "bottom-right",
+      "icon_style": "clean avatar icon",
+      "action": "onClick expands into a full-screen chat interface"
+    },
+    "expanded_chat": {
+      "layout": "full-screen overlay (modal)",
+      "theme": "dark mode",
+      "components": [
+        "🌍 Language Switcher (must update bot language dynamically)",
+        "🎤 Audio Controls (enable voice-to-text and text-to-speech)",
+        "📷 Camera Access (to capture and analyze photos or visual input)",
+        "📎 QR Code Scanner (access device camera to read QR codes)",
+        "🧠 AR Toggle (enable augmented reality overlays if available)",
+        "📂 Portfolio Access (display user’s documents, saved files, preferences, travel data, NFTs, crypto, etc.)"
+      ],
+      "ai_status_display": {
+        "provider": "Show current AI provider (Gemini, OpenAI, Claude, etc.)",
+        "language": "Show current language in use",
+        "model": "Show model name (e.g., gemini-1.5-pro, GPT-4, Claude 2.1)"
+      },
+      "input_field": {
+        "placeholder_text": "Ask me anything about [platform topic]",
+        "smart_suggestions_enabled": true,
+        "multilingual_input_supported": true
+      }
+    }
+  },
+  "logic_requirements": {
+    "language_switching": "Allow dynamic language change without page reload",
+    "voice_input_output": "Integrate voice input and audio output capabilities",
+    "camera_support": "Trigger camera for visual input when needed",
+    "qr_code_functionality": "Scan and decode QR via device camera",
+    "portfolio_logic": "Sync and show user data (documents, activity logs, preferences, personalized results)"
+  },
+  "bot_behavior": {
+    "personality": "Custom per platform (travel expert, crypto analyst, branding mentor, etc.)",
+    "fallbacks": "If Gemini fails, fallback to OpenAI; if OpenAI fails, switch to Claude or Llama",
+    "response_style": "Friendly, helpful, human-like, short (3–4 lines max unless asked otherwise)",
+    "error_handling": "Show helpful error with suggestion like 'Try switching to OpenAI' or 'Check internet'",
+    "status_feedback": "Always show bot’s status and provider in UI"
+  },
+  "visual_guidelines": "Do NOT copy design colors or names from CryptoBot. Each bot must preserve its unique brand identity. This structure only applies to functionality and modular layout."
+}

@@ -1,0 +1,49 @@
+{
+  "command": "unify_chat_design_and_functions",
+  "objective": "Unificar el diseño y comportamiento de los sistemas de chat en todas las plataformas (Aurora, Jet AI, CryptoBot, Sofía, LifePath, etc.) para que sigan el mismo estilo visual, funcionalidad y comportamiento.",
+  "ui_design": {
+    "floating_icon": {
+      "position": "bottom-right",
+      "icon_style": "minimalistic avatar icon",
+      "action": "expand to full screen chat window"
+    },
+    "expanded_chat": {
+      "layout": "full-screen overlay",
+      "dark_mode": true,
+      "components": [
+        "🌍 Idioma selector (debe funcionar y cambiar idioma global del bot)",
+        "🎤 Activación de audio (voz a texto y texto a voz)",
+        "📷 Cámara (integración para capturar y analizar imágenes)",
+        "📎 QR Scanner (activar cámara y escanear QR)",
+        "🧠 AR toggle (activar realidad aumentada si está disponible)",
+        "📂 Portafolio (mostrar todos los datos del usuario, archivos, preferencias, historial de interacciones, documentos guardados, recomendaciones, etc.)"
+      ],
+      "bot_status": {
+        "provider": "mostrar si es Gemini, OpenAI, Claude, etc.",
+        "language": "mostrar idioma activo",
+        "model": "mostrar modelo activo (ej: gemini-1.5-pro)"
+      },
+      "message_input": {
+        "placeholder": "Ask me anything about [platform topic]",
+        "smart_suggestions": true,
+        "multilingual": true
+      }
+    }
+  },
+  "logic_requirements": {
+    "language_switch": "Cambiar idioma del bot dinámicamente sin recargar",
+    "audio_recognition": "Integrar reconocimiento de voz",
+    "text_to_speech": "Responder también en voz si el usuario activa el audio",
+    "camera_input": "Activar análisis visual si se sube imagen o se usa la cámara",
+    "qr_functionality": "Leer códigos QR desde cámara del dispositivo",
+    "portfolio_sync": "Mostrar todos los datos guardados por usuario (viajes, activos, preferencias, historial, etc.)"
+  },
+  "bot_behavior": {
+    "personality": "adaptada a cada plataforma, pero profesional, cercana y útil",
+    "fallbacks": "usar OpenAI si Gemini falla (y viceversa)",
+    "response_style": "breve, directa, humana",
+    "error_handling": "responder de forma amable y con sugerencia de corrección",
+    "status_display": "mostrar si algo no está funcionando y ofrecer solución ('Use OpenAI', 'Cambiar idioma', etc.)"
+  },
+  "visual_notes": "No copiar colores ni branding de CryptoBot. Cada plataforma debe mantener su identidad visual. Solo copiar la estructura funcional y modular del chat."
+}
