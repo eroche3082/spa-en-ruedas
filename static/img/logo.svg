@@ -1,11 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-  <style>
-    .logo-icon { fill: #66b2b2; }
-    .icon-accent { fill: #d4a373; }
-  </style>
-  <g transform="translate(0,0)">
-    <circle cx="25" cy="25" r="20" class="logo-icon" />
-    <circle cx="25" cy="25" r="15" fill="white" />
-    <path d="M25,10 C17.5,10 10,17.5 10,25 C10,32.5 17.5,40 25,40 L25,10 Z" class="icon-accent" opacity="0.7" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo circular -->
+  <circle cx="100" cy="100" r="95" fill="#85c4d9" opacity="0.9"/>
+  
+  <!-- Círculo interior -->
+  <circle cx="100" cy="100" r="80" fill="#fff" opacity="0.8"/>
+  
+  <!-- Olas representando agua/relajación -->
+  <path d="M40,110 C55,100 65,115 80,105 C95,95 105,110 120,100 C135,90 145,105 160,95" 
+        stroke="#66b8db" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M40,125 C55,115 65,130 80,120 C95,110 105,125 120,115 C135,105 145,120 160,110" 
+        stroke="#4c9abe" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Hojas/plantas de spa -->
+  <path d="M90,65 C80,55 75,40 85,35 C95,30 100,45 105,55 C110,45 115,30 125,35 C135,40 130,55 120,65" 
+        fill="#5eb77e"/>
+  
+  <!-- Ruedas estilizadas -->
+  <circle cx="70" cy="145" r="12" fill="none" stroke="#666" stroke-width="3"/>
+  <circle cx="70" cy="145" r="6" fill="#666"/>
+  <circle cx="130" cy="145" r="12" fill="none" stroke="#666" stroke-width="3"/>
+  <circle cx="130" cy="145" r="6" fill="#666"/>
+  
+  <!-- Texto -->
+  <text x="100" y="85" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#333">SPA</text>
+  <text x="100" y="105" font-family="Verdana, sans-serif" font-size="12" font-style="italic" text-anchor="middle" fill="#333">en RUEDAS</text>
 </svg>
