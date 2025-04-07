@@ -139,6 +139,28 @@
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBGWmVEy2zp6fpqaBkDOpV-Qj_FP6QkZj0",
+      authDomain: "erudite-creek-431302-q3.firebaseapp.com",
+      projectId: "erudite-creek-431302-q3",
+      storageBucket: "erudite-creek-431302-q3.firebasestorage.app",
+      messagingSenderId: "744217150021",
+      appId: "1:744217150021:web:ec88708ad39818b87c192c",
+      measurementId: "G-V3CZJNRE29"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+    
     <!-- Custom Scripts -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
