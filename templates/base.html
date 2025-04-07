@@ -43,11 +43,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/reservar' %}active{% endif %}" href="{{ url_for('reservar') }}">Reservar</a>
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.path == '/verificar_reserva' %}active{% endif %}" href="{{ url_for('verificar_reserva') }}">Verificar Reserva</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.path == '/calendario' %}active{% endif %}" href="{{ url_for('calendario') }}">Calendario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/nosotros' %}active{% endif %}" href="{{ url_for('nosotros') }}">Nosotros</a>
